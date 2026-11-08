@@ -2,7 +2,52 @@ const videoPeople=[['Dad','dad.mp4','🧔'],['Mom','mom.mp4','💗'],['Sister','
 // Add another greeting by adding an entry above, for example ['Friend','friend.mp4','💌'].
 const KEY='kotryna-18-progress-v2';const state=JSON.parse(localStorage.getItem(KEY)||'{}');function save(){localStorage.setItem(KEY,JSON.stringify(state))}function setDone(k){state[k]=true;save();document.querySelectorAll('[data-achievement]').forEach(x=>{x.textContent=state[x.dataset.achievement]?'✓ Completed':'Not yet completed'})}function notice(s){const el=document.getElementById('notice');if(el){el.textContent=s;el.hidden=false}}
 function photoFallback(img){const stem=img.dataset.stem;const ext=['jpeg','jpg','png','webp'];let i=Number(img.dataset.try||0);if(i<ext.length-1){i++;img.dataset.try=i;img.src=stem+'.'+ext[i]}else{img.hidden=true;img.parentElement.querySelector('.photo-fallback').hidden=false}}
-function makePhotos(){const target=document.getElementById('photos');if(!target)return;for(let i=1;i<=18;i++){let c=document.createElement('article');c.className='card photo-card';c.innerHTML=`<div class="photo-frame"><div class="photo-fallback" hidden><strong>${i}</strong> Add photo-age${i}.jpeg</div><img src="photo-age${i}.jpeg" data-stem="photo-age${i}" onerror="photoFallback(this)" alt="Kotryna at age ${i}" loading="lazy"></div><h3>Chapter ${i}</h3><span class="tag">Age ${i}</span>`;target.append(c)}setDone('journey')}
+function makePhotos() {
+  const target = document.getElementById('photos');
+
+  if (!target) {
+    return;
+  }
+
+  for (let age = 1; age <= 18; age++) {
+    const card = document.createElement('article');
+    card.className = 'card photo-card';
+
+    const frame = document.createElement('div');
+    frame.className = 'photo-frame';
+
+    const image = document.createElement('img');
+    image.src = `photo-age${age}.jpeg`;
+    image.alt = `Kotryna at age ${age}`;
+    image.loading = age <= 2 ? 'eager' : 'lazy';
+    image.decoding = 'async';
+
+    const fallback = document.createElement('div');
+    fallback.className = 'photo-fallback';
+    fallback.hidden = true;
+    fallback.innerHTML = `<strong>✦ ${age} ✦</strong><span>Missing: photo-age${age}.jpeg</span>`;
+
+    image.addEventListener('error', () => {
+      image.hidden = true;
+      fallback.hidden = false;
+    });
+
+    frame.append(image, fallback);
+
+    const heading = document.createElement('h3');
+    heading.textContent = `Chapter ${String(age).padStart(2, '0')}`;
+
+    const tag = document.createElement('span');
+    tag.className = 'tag';
+    tag.textContent = `Age ${age} ✦`;
+
+    card.append(frame, heading, tag);
+    target.append(card);
+  }
+
+  setDone('journey');
+}
+
 function makeVideos(){const target=document.getElementById('videos');if(!target)return;for(const [name,file,emoji] of videoPeople){const c=document.createElement('article');c.className='panel video-card';c.innerHTML=`<div class="eyebrow">A special message</div><h3>${emoji} ${name}</h3><video controls playsinline preload="none"><source src="${file}" type="video/mp4">Your browser cannot play this video.</video><div class="video-missing" hidden><div><b>🎬</b> Add <code>${file}</code> beside the HTML files</div></div>`;const vid=c.querySelector('video');vid.addEventListener('error',()=>{vid.hidden=true;c.querySelector('.video-missing').hidden=false});vid.querySelector('source').addEventListener('error',()=>{vid.hidden=true;c.querySelector('.video-missing').hidden=false});target.append(c)}setDone('voices')}
 function initMusic(){
   const btn=document.getElementById('musicBtn'),audio=document.getElementById('birthdayAudio');

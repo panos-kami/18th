@@ -1,1 +1,148 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102a38"><title>Birthday Quests — Kotryna XVIII</title><link rel="stylesheet" href="style.css"></head><body><header><nav><a class="brand" href="index.html">✦ KOTRYNA · XVIII 🐾</a><button class="menuBtn" aria-label="Toggle menu">☰ Menu</button><div class="links"><a class="" href="index.html">Home</a><a class="" href="world.html">World Map</a><a class="" href="journey.html">18 Years</a><a class="" href="videos.html">Messages</a><a class="active" href="game.html">Quests</a><a class="" href="finale.html">Finale</a></div></nav></header><main class="shell"><div class="section-title"><div class="eyebrow">Adventurer's Guild · Cat Kingdom</div><h1>Kotryna's <span class="gold">Quest Board</span></h1><p class="lead">Three real mini quests. Collect starlight, befriend the Cat Guardian, and complete the Elemental Trial.</p></div><div class="quest-layout"><section class="panel" id="stars"><div class="eyebrow">Quest 01 · Star Catcher</div><h2>18 Starlight Wishes ⭐</h2><p>Tap the floating stars to collect all eighteen.</p><div class="hud"><span class="status"><b id="count">0</b> / 18 starlight</span><span class="status" data-achievement="stars"></span></div><div class="progress"><div id="starBar"></div></div><div id="gameArea" class="game-area"></div><button class="btn ghost" id="resetStars">Restart star quest</button></section><section class="panel" id="catquest"><div class="eyebrow">Quest 02 · Cat Guardian</div><h2>Sanctuary of Purrs 🐈</h2><p>The guardian cat needs 18 pets to bless your birthday with good luck.</p><div class="center" style="padding:36px 0"><div id="petCat" class="miniCat" role="button" tabindex="0" aria-label="Pet the cat">🐈‍⬛</div><h3>Purrs collected: <span id="petCount">0</span></h3><span class="status" data-achievement="cats"></span><p class="subtle">Tap the cat! (Cats always want more.)</p></div></section></div><section id="trial" class="section"><div class="panel"><div class="eyebrow">Quest 03 · Elemental Trial</div><h2>The Traveler's Test 💎</h2><p>Three questions about the world of adventure and one very special birthday.</p><div id="puzzles"></div><p class="status" data-achievement="quiz"></p></div></section><div id="notice" class="panel center" hidden></div><section class="section center"><a class="btn" href="finale.html">Claim Your Birthday Reward →</a></section></main><footer class="footer">KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈</footer><script src="main.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#102a38" name="theme-color"/>
+  <title>
+   Birthday Quests — Kotryna XVIII
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header>
+   <nav>
+    <a class="brand" href="index.html">
+     ✦ KOTRYNA · XVIII 🐾
+    </a>
+    <button aria-label="Toggle menu" class="menuBtn">
+     ☰ Menu
+    </button>
+    <div class="links">
+     <a class="" href="index.html">
+      Home
+     </a>
+     <a class="" href="world.html">
+      World Map
+     </a>
+     <a class="" href="journey.html">
+      18 Years
+     </a>
+     <a class="" href="videos.html">
+      Messages
+     </a>
+     <a class="active" href="game.html">
+      Quests
+     </a>
+     <a class="" href="finale.html">
+      Finale
+     </a>
+    </div>
+   </nav>
+  </header>
+  <main class="shell">
+   <div class="section-title">
+    <div class="eyebrow">
+     Adventurer's Guild · Cat Kingdom
+    </div>
+    <h1>
+     Kotryna's
+     <span class="gold">
+      Quest Board
+     </span>
+    </h1>
+    <p class="lead">
+     Three real mini quests. Collect starlight, befriend the Cat Guardian, and complete the Elemental Trial.
+    </p>
+   </div>
+   <div class="quest-layout">
+    <section class="panel" id="stars">
+     <div class="eyebrow">
+      Quest 01 · Star Catcher
+     </div>
+     <h2>
+      18 Starlight Wishes ⭐
+     </h2>
+     <p>
+      Tap the floating stars to collect all eighteen.
+     </p>
+     <div class="hud">
+      <span class="status">
+       <b id="count">
+        0
+       </b>
+       / 18 starlight
+      </span>
+      <span class="status" data-achievement="stars">
+      </span>
+     </div>
+     <div class="progress">
+      <div id="starBar">
+      </div>
+     </div>
+     <div class="game-area" id="gameArea">
+     </div>
+     <button class="btn ghost" id="resetStars">
+      Restart star quest
+     </button>
+    </section>
+    <section class="panel" id="catquest">
+     <div class="eyebrow">
+      Quest 02 · Cat Guardian
+     </div>
+     <h2>
+      Sanctuary of Purrs 🐈
+     </h2>
+     <p>
+      The guardian cat needs 18 pets to bless your birthday with good luck.
+     </p>
+     <div class="center" style="padding:36px 0">
+      <div aria-label="Pet the cat" class="miniCat" id="petCat" role="button" tabindex="0">
+       🐈‍⬛
+      </div>
+      <h3>
+       Purrs collected:
+       <span id="petCount">
+        0
+       </span>
+      </h3>
+      <span class="status" data-achievement="cats">
+      </span>
+      <p class="subtle">
+       Tap the cat! (Cats always want more.)
+      </p>
+     </div>
+    </section>
+   </div>
+   <section class="section" id="trial">
+    <div class="panel">
+     <div class="eyebrow">
+      Quest 03 · Elemental Trial
+     </div>
+     <h2>
+      The Traveler's Test 💎
+     </h2>
+     <p>
+      Three questions about the world of adventure and one very special birthday.
+     </p>
+     <div id="puzzles">
+     </div>
+     <p class="status" data-achievement="quiz">
+     </p>
+    </div>
+   </section>
+   <div class="panel center" hidden="" id="notice">
+   </div>
+   <section class="section center">
+    <a class="btn" href="finale.html">
+     Claim Your Birthday Reward →
+    </a>
+   </section>
+  </main>
+  <footer class="footer">
+   KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈
+  </footer>
+  <script src="main.js">
+  </script>
+ </body>
+</html>
