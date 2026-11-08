@@ -1,83 +1,34 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#102a38" name="theme-color"/>
-  <title>
-   Birthday Messages — Kotryna XVIII
-  </title>
-  <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <header>
-   <nav>
-    <a class="brand" href="index.html">
-     ✦ KOTRYNA · XVIII 🐾
-    </a>
-    <button aria-label="Toggle menu" class="menuBtn">
-     ☰ Menu
-    </button>
-    <div class="links">
-     <a class="" href="index.html">
-      Home
-     </a>
-     <a class="" href="world.html">
-      World Map
-     </a>
-     <a class="" href="journey.html">
-      18 Years
-     </a>
-     <a class="active" href="videos.html">
-      Messages
-     </a>
-     <a class="" href="game.html">
-      Quests
-     </a>
-     <a class="" href="finale.html">
-      Finale
-     </a>
-    </div>
-   </nav>
-  </header>
-  <main class="shell">
-   <div class="section-title">
-    <div class="eyebrow">
-     Story Quest · Voices Village
-    </div>
-    <h1>
-     Messages Just
-     <span class="gold">
-      for You
-     </span>
-    </h1>
-    <p class="lead">
-     Some people have a few words for you on your eighteenth birthday. Press play whenever you're ready. 💌
-    </p>
-   </div>
-   <div class="panel" style="margin-bottom:22px">
-    <p>
-     <b>
-      Special Delivery ✧
-     </b>
-     Seven messages are reserved: Dad, Mom, Sister, Marija, Tėja, Grandma and Indraja. More can be added later.
-    </p>
-    <p class="subtle">
-     Videos are loaded by filename from the same folder as this page.
-    </p>
-   </div>
-   <div class="video-grid" id="videos">
-   </div>
-   <section class="section center">
-    <a class="btn" href="game.html">
-     Next · The Cat Kingdom 🐈
-    </a>
-   </section>
-  </main>
-  <footer class="footer">
-   KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈
-  </footer>
-  <script src="main.js">
-  </script>
- </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111e2d">
+  <title>Birthday Voices · Kotryna XVIII</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="main.js?v=5" defer></script>
+</head>
+<body data-page="videos.html">
+  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
+      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+    </header>
+    <main class="screen">
+<section class="screen-heading"><div class="eyebrow">✉ STORY QUEST · 02</div><h1>Voices of <em>Home</em></h1><p>Special messages from the people who love you. Tap a message to open it.</p></section>
+<div class="npc-intro"><span class="npc-cat">🐈</span><p>Meow! I've collected some very special messages for you, traveler.</p></div>
+<section id="videoList" class="video-list" aria-label="Birthday video messages"></section>
+<div class="tip"><span>✉</span><span>More messages can be added later. Each one has its own portal.</span></div>
+<a class="game-button primary wide" href="game.html">CONTINUE TO THE CAT TRIALS ➜</a>
+</main>
+  </div>
+  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
+<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
+<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
+<a href="videos.html" class="nav-link selected" aria-label="Voices"><span>✉</span><small>Voices</small></a>
+<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
+<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
 </html>

@@ -1,148 +1,37 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#102a38" name="theme-color"/>
-  <title>
-   Birthday Quests — Kotryna XVIII
-  </title>
-  <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <header>
-   <nav>
-    <a class="brand" href="index.html">
-     ✦ KOTRYNA · XVIII 🐾
-    </a>
-    <button aria-label="Toggle menu" class="menuBtn">
-     ☰ Menu
-    </button>
-    <div class="links">
-     <a class="" href="index.html">
-      Home
-     </a>
-     <a class="" href="world.html">
-      World Map
-     </a>
-     <a class="" href="journey.html">
-      18 Years
-     </a>
-     <a class="" href="videos.html">
-      Messages
-     </a>
-     <a class="active" href="game.html">
-      Quests
-     </a>
-     <a class="" href="finale.html">
-      Finale
-     </a>
-    </div>
-   </nav>
-  </header>
-  <main class="shell">
-   <div class="section-title">
-    <div class="eyebrow">
-     Adventurer's Guild · Cat Kingdom
-    </div>
-    <h1>
-     Kotryna's
-     <span class="gold">
-      Quest Board
-     </span>
-    </h1>
-    <p class="lead">
-     Three real mini quests. Collect starlight, befriend the Cat Guardian, and complete the Elemental Trial.
-    </p>
-   </div>
-   <div class="quest-layout">
-    <section class="panel" id="stars">
-     <div class="eyebrow">
-      Quest 01 · Star Catcher
-     </div>
-     <h2>
-      18 Starlight Wishes ⭐
-     </h2>
-     <p>
-      Tap the floating stars to collect all eighteen.
-     </p>
-     <div class="hud">
-      <span class="status">
-       <b id="count">
-        0
-       </b>
-       / 18 starlight
-      </span>
-      <span class="status" data-achievement="stars">
-      </span>
-     </div>
-     <div class="progress">
-      <div id="starBar">
-      </div>
-     </div>
-     <div class="game-area" id="gameArea">
-     </div>
-     <button class="btn ghost" id="resetStars">
-      Restart star quest
-     </button>
-    </section>
-    <section class="panel" id="catquest">
-     <div class="eyebrow">
-      Quest 02 · Cat Guardian
-     </div>
-     <h2>
-      Sanctuary of Purrs 🐈
-     </h2>
-     <p>
-      The guardian cat needs 18 pets to bless your birthday with good luck.
-     </p>
-     <div class="center" style="padding:36px 0">
-      <div aria-label="Pet the cat" class="miniCat" id="petCat" role="button" tabindex="0">
-       🐈‍⬛
-      </div>
-      <h3>
-       Purrs collected:
-       <span id="petCount">
-        0
-       </span>
-      </h3>
-      <span class="status" data-achievement="cats">
-      </span>
-      <p class="subtle">
-       Tap the cat! (Cats always want more.)
-      </p>
-     </div>
-    </section>
-   </div>
-   <section class="section" id="trial">
-    <div class="panel">
-     <div class="eyebrow">
-      Quest 03 · Elemental Trial
-     </div>
-     <h2>
-      The Traveler's Test 💎
-     </h2>
-     <p>
-      Three questions about the world of adventure and one very special birthday.
-     </p>
-     <div id="puzzles">
-     </div>
-     <p class="status" data-achievement="quiz">
-     </p>
-    </div>
-   </section>
-   <div class="panel center" hidden="" id="notice">
-   </div>
-   <section class="section center">
-    <a class="btn" href="finale.html">
-     Claim Your Birthday Reward →
-    </a>
-   </section>
-  </main>
-  <footer class="footer">
-   KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈
-  </footer>
-  <script src="main.js">
-  </script>
- </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111e2d">
+  <title>Cat Guardian Trials · Kotryna XVIII</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="main.js?v=5" defer></script>
+</head>
+<body data-page="game.html">
+  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
+      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+    </header>
+    <main class="screen">
+<section class="screen-heading"><div class="eyebrow">⚔ ADVENTURE · CHAPTER 03</div><h1>Guardian <em>Trials</em></h1><p>Three challenges stand between you and the birthday treasure. Your companion believes in you!</p></section>
+<div class="player-panel ornate"><div class="avatar-ring">🐈</div><div class="player-copy"><small>YOUR COMPANION</small><strong>Mochi · Cat Guardian</strong><div class="health-bar"><span></span></div><small>LVL 18 · FRIENDSHIP MAX</small></div><div class="power">✧<span>MAX</span></div></div>
+<div class="quest-summary"><span>TRIAL COMPLETION</span><strong id="questsProgress">0 / 3</strong></div><div class="progress-rail"><div id="questsFill" class="progress-fill"></div></div>
+<div class="quest-tabs" role="tablist" aria-label="Choose a quest"><button class="quest-tab active" data-trial="stars" role="tab" aria-selected="true"><span>✦</span> Starfall</button><button class="quest-tab" data-trial="cat" role="tab" aria-selected="false"><span>🐾</span> Cat Café</button><button class="quest-tab" data-trial="runes" role="tab" aria-selected="false"><span>☽</span> Rune Match</button></div>
+<section class="trial-panel ornate" id="trialStars"><div class="trial-title"><span class="quest-number">I</span><div><small>TRIAL OF THE STARS</small><h2>Starfall Hunt</h2></div></div><p>Catch 10 glowing stars before the 20-second timer ends!</p><div class="battle-hud"><span>✦ <b id="catchCount">0</b> / 10</span><span>⏱ <b id="catchTimer">20</b>s</span></div><div id="starArena" class="star-arena"><div class="arena-hint" id="arenaHint">Tap START to summon the stars</div></div><button class="game-button primary wide" id="startStars" type="button">START STARFALL ⚔</button></section>
+<section class="trial-panel ornate hidden" id="trialCat"><div class="trial-title"><span class="quest-number">II</span><div><small>TRIAL OF THE GUARDIAN</small><h2>Cat Café</h2></div></div><p>Mochi is hungry! Give your companion the right treat three times.</p><div id="catMood" class="cat-portrait">🐈</div><div class="cat-dialogue" id="catDialogue">Mrrp! I would love something tasty… 🐟</div><div class="battle-hud"><span>RIGHT TREATS <b id="treatCount">0</b> / 3</span></div><div class="treat-grid"><button data-treat="fish" type="button">🐟<small>Fish</small></button><button data-treat="yarn" type="button">🧶<small>Yarn</small></button><button data-treat="leaf" type="button">🍃<small>Leaf</small></button></div></section>
+<section class="trial-panel ornate hidden" id="trialRunes"><div class="trial-title"><span class="quest-number">III</span><div><small>TRIAL OF MEMORY</small><h2>Rune Match</h2></div></div><p>Reveal the magical runes. Match all four pairs to restore the constellation.</p><div class="battle-hud"><span>PAIRS <b id="pairCount">0</b> / 4</span><span>MOVES <b id="moveCount">0</b></span></div><div id="runeGrid" class="rune-grid"></div><button class="game-button secondary wide" id="restartRunes" type="button">RESHUFFLE RUNES ↻</button></section>
+<section class="rewards-panel"><div class="eyebrow">✧ ADVENTURER'S REWARDS</div><div id="rewards" class="rewards"></div><a id="claimReward" href="finale.html" class="game-button primary wide locked">🔒 COMPLETE THREE TRIALS</a></section>
+</main>
+  </div>
+  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
+<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
+<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
+<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
+<a href="game.html" class="nav-link selected" aria-label="Quests"><span>⚔</span><small>Quests</small></a>
+<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
 </html>

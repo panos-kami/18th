@@ -1,169 +1,46 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#102a38" name="theme-color"/>
-  <title>
-   World Map — Kotryna XVIII
-  </title>
-  <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <header>
-   <nav>
-    <a class="brand" href="index.html">
-     ✦ KOTRYNA · XVIII 🐾
-    </a>
-    <button aria-label="Toggle menu" class="menuBtn">
-     ☰ Menu
-    </button>
-    <div class="links">
-     <a class="" href="index.html">
-      Home
-     </a>
-     <a class="active" href="world.html">
-      World Map
-     </a>
-     <a class="" href="journey.html">
-      18 Years
-     </a>
-     <a class="" href="videos.html">
-      Messages
-     </a>
-     <a class="" href="game.html">
-      Quests
-     </a>
-     <a class="" href="finale.html">
-      Finale
-     </a>
-    </div>
-   </nav>
-  </header>
-  <main class="shell">
-   <div class="section-title">
-    <div class="eyebrow">
-     The world of Kotryna
-    </div>
-    <h1>
-     The Adventure Map
-    </h1>
-    <p class="lead">
-     Six locations. One very special birthday. Choose where to explore first.
-    </p>
-   </div>
-   <div class="map">
-    <div class="map-point" style="left:23%;top:21%">
-     <a aria-label="18 Years" data-start-story="" href="journey.html">
-      📖
-     </a>
-     <span>
-      The Memory Grove
-     </span>
-    </div>
-    <div class="map-point" style="left:67%;top:18%">
-     <a aria-label="Birthday Messages" href="videos.html">
-      💌
-     </a>
-     <span>
-      Voices Village
-     </span>
-    </div>
-    <div class="map-point" style="left:48%;top:47%">
-     <a aria-label="Quests" href="game.html">
-      🐈
-     </a>
-     <span>
-      Cat Sanctuary
-     </span>
-    </div>
-    <div class="map-point" style="left:17%;top:76%">
-     <a aria-label="Starlight quest" href="game.html#stars">
-      ⭐
-     </a>
-     <span>
-      Starlight Field
-     </span>
-    </div>
-    <div class="map-point" style="left:79%;top:73%">
-     <a aria-label="Elemental Trial" href="game.html#trial">
-      💎
-     </a>
-     <span>
-      Elemental Trial
-     </span>
-    </div>
-    <div class="map-point" style="left:81%;top:43%">
-     <a aria-label="Birthday Finale" href="finale.html">
-      🎁
-     </a>
-     <span>
-      Birthday Temple
-     </span>
-    </div>
-   </div>
-   <section class="section center">
-    <p class="subtle">
-     Inspired by the feeling of fantasy exploration and adventure games — a custom birthday world just for Kotryna.
-    </p>
-    <a class="btn" data-start-story="" href="journey.html">
-     ♫ Begin the 18-Year Story →
-    </a>
-   </section>
-  </main>
-  <div aria-label="18 Years of Kotryna" aria-modal="true" hidden="" id="storyOverlay" role="dialog">
-   <div class="storyToolbar">
-    <span>
-     🐾 18 Years of Kotryna
-    </span>
-    <div>
-     <button id="storyMusicToggle" type="button">
-      ⏸ Pause music
-     </button>
-     <button id="closeStory" type="button">
-      ✕ Back to map
-     </button>
-    </div>
-   </div>
-   <iframe id="storyFrame" loading="eager" title="18 Years of Kotryna">
-   </iframe>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111e2d">
+  <title>World Map · Kotryna XVIII</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="main.js?v=5" defer></script>
+</head>
+<body data-page="world.html">
+  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
+      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+    </header>
+    <main class="screen">
+<section class="screen-heading">
+  <div class="eyebrow">✦ CHAPTER SELECT</div>
+  <h1>Adventure Map</h1>
+  <p>Follow the magical pawprints. Every destination holds part of your story.</p>
+</section>
+<section class="world-banner ornate">
+  <div class="floating-island"><span class="island-moon">☽</span><span class="island-cat">🐈</span><span class="island-spark">✦ ✧ ✦</span></div>
+  <div><span class="eyebrow">NEW REGION DISCOVERED</span><h2>The Kingdom of Eighteen</h2><p>Explore your birthday realm</p></div>
+</section>
+<div class="section-label"><span>✧</span> TELEPORT WAYPOINTS <span>✧</span></div>
+<section class="destinations">
+  <a class="destination" href="journey.html" data-start-story><span class="dest-icon">◈</span><span class="dest-copy"><small>CHAPTER 01 · STORY QUEST</small><strong>18 Years of Magic</strong><span>18 portraits • a song for you</span></span><span class="dest-arrow">➜</span></a>
+  <a class="destination" href="videos.html"><span class="dest-icon">✉</span><span class="dest-copy"><small>CHAPTER 02 · MESSAGES</small><strong>Voices of Home</strong><span>Special birthday greetings</span></span><span class="dest-arrow">➜</span></a>
+  <a class="destination" href="game.html"><span class="dest-icon">⚔</span><span class="dest-copy"><small>CHAPTER 03 · ADVENTURE</small><strong>The Cat Guardian Trials</strong><span>Three real mini games</span></span><span class="dest-arrow">➜</span></a>
+  <a class="destination" href="finale.html"><span class="dest-icon">★</span><span class="dest-copy"><small>FINAL CHAPTER · REWARD</small><strong>Legendary Birthday Gift</strong><span>A message from your world</span></span><span class="dest-arrow">➜</span></a>
+</section>
+<div class="tip"><span>🐾</span><span>Your loyal cat guide is waiting. Tap any quest to begin!</span></div>
+</main>
   </div>
-  <audio id="worldStoryAudio" loop="" preload="auto" src="birthday-music.mp3">
-  </audio>
-  <style>
-   #storyOverlay[hidden]{display:none!important}#storyOverlay{position:fixed;inset:0;z-index:9999;background:#102a38;display:flex;flex-direction:column}
-.storyToolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#102a38;color:#f3dc9e;padding:10px 16px;font-size:14px}
-.storyToolbar>div{display:flex;gap:8px}.storyToolbar button{background:transparent;border:1px solid #a79368;color:#f3dc9e;border-radius:9px;padding:9px 12px;cursor:pointer;font:inherit}
-#storyFrame{flex:1;width:100%;border:0;background:#102a38}
-@media(max-width:600px){.storyToolbar{font-size:12px;padding:8px}.storyToolbar button{padding:7px;font-size:11px}}
-  </style>
-  <script>
-   (function(){
- const overlay=document.getElementById('storyOverlay');
- const audio=document.getElementById('worldStoryAudio');
- const frame=document.getElementById('storyFrame');
- const musicToggle=document.getElementById('storyMusicToggle');
- function sync(){musicToggle.textContent=audio.paused?'♫ Resume music':'⏸ Pause music'}
- document.querySelectorAll('[data-start-story]').forEach(link=>link.addEventListener('click',event=>{
-   event.preventDefault();
-   overlay.hidden=false;
-   document.body.style.overflow='hidden';
-   // Playing within the original click event avoids cross-page autoplay restrictions.
-   audio.play().catch(()=>{musicToggle.textContent='♫ Tap to play music'});
-   frame.src='journey.html?embedded=1';
-   sync();
- }));
- musicToggle.addEventListener('click',()=>{if(audio.paused)audio.play().catch(()=>{});else audio.pause();sync()});
- document.getElementById('closeStory').addEventListener('click',()=>{
-   overlay.hidden=true;frame.src='about:blank';audio.pause();document.body.style.overflow='';sync();
- });
- audio.addEventListener('play',sync);audio.addEventListener('pause',sync);
-})();
-  </script>
-  <footer class="footer">
-   KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈
-  </footer>
-  <script src="main.js">
-  </script>
- </body>
+  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
+<a href="world.html" class="nav-link selected" aria-label="Map"><span>✧</span><small>Map</small></a>
+<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
+<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
+<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
+<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
 </html>

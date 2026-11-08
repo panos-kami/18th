@@ -1,149 +1,40 @@
 <!doctype html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <meta content="#102a38" name="theme-color"/>
-  <title>
-   Welcome — Kotryna XVIII
-  </title>
-  <link href="style.css" rel="stylesheet"/>
- </head>
- <body>
-  <header>
-   <nav>
-    <a class="brand" href="index.html">
-     ✦ KOTRYNA · XVIII 🐾
-    </a>
-    <button aria-label="Toggle menu" class="menuBtn">
-     ☰ Menu
-    </button>
-    <div class="links">
-     <a class="active" href="index.html">
-      Home
-     </a>
-     <a class="" href="world.html">
-      World Map
-     </a>
-     <a class="" href="journey.html">
-      18 Years
-     </a>
-     <a class="" href="videos.html">
-      Messages
-     </a>
-     <a class="" href="game.html">
-      Quests
-     </a>
-     <a class="" href="finale.html">
-      Finale
-     </a>
-    </div>
-   </nav>
-  </header>
-  <main class="shell">
-   <div class="overlay" id="intro">
-    <div>
-     <div class="sparkles">
-      ✦ ✧ ✦
-     </div>
-     <div class="intro-age" id="bigIntro">
-      18
-     </div>
-     <p class="eyebrow" id="introCaption">
-      A new chapter begins
-     </p>
-     <button class="btn" id="introNext">
-      Continue ✧
-     </button>
-     <p class="subtle" style="margin-top:20px;font-size:12px">
-      Tap to begin your adventure
-     </p>
-    </div>
-   </div>
-   <section class="hero">
-    <div>
-     <div class="eyebrow">
-      An extraordinary birthday event · 02.11
-     </div>
-     <div class="cat" style="font-size:100px">
-      🐈
-     </div>
-     <h1>
-      Happy 18th Birthday,
-      <br/>
-      <span class="gold">
-       Kotryna
-      </span>
-     </h1>
-     <p class="lead">
-      A new world is open. Follow the constellations, uncover eighteen chapters, hear the voices of your favorite people, and complete a birthday adventure made just for you.
-     </p>
-     <div class="actions">
-      <a class="btn" href="world.html">
-       Enter the World ✦
-      </a>
-      <a class="btn ghost" href="journey.html">
-       Explore 18 Years
-      </a>
-     </div>
-    </div>
-   </section>
-   <section class="section">
-    <div class="section-title">
-     <div class="eyebrow">
-      Adventurer's handbook
-     </div>
-     <h2>
-      How to play
-     </h2>
-     <p class="subtle">
-      Collect memories and starlight as you explore this little birthday world.
-     </p>
-    </div>
-    <div class="grid">
-     <div class="card">
-      <div class="glyph">
-       🗺️
-      </div>
-      <h3>
-       Explore the map
-      </h3>
-      <p>
-       Pick a waypoint and travel between chapters.
-      </p>
-     </div>
-     <div class="card">
-      <div class="glyph">
-       📜
-      </div>
-      <h3>
-       Complete quests
-      </h3>
-      <p>
-       Catch stars, pass the elemental trial and make a cat very happy.
-      </p>
-     </div>
-     <div class="card">
-      <div class="glyph">
-       🎁
-      </div>
-      <h3>
-       Unlock the ending
-      </h3>
-      <p>
-       A special reward awaits at the end of your journey.
-      </p>
-     </div>
-    </div>
-   </section>
-   <script>
-    let introStep=0;const t=document.getElementById('bigIntro'),cap=document.getElementById('introCaption'),next=document.getElementById('introNext'),veil=document.getElementById('intro');next.onclick=()=>{introStep++;if(introStep===1){t.textContent='Happy Birthday';t.style.fontSize='clamp(38px,9vw,88px)';cap.textContent='The stars have a name to celebrate'}else if(introStep===2){t.textContent='KOTRYNA';cap.textContent='LEVEL 18 UNLOCKED';next.textContent='Start Adventure ✦'}else{veil.classList.add('hidden');sessionStorage.setItem('seenKotrynaIntro','1')}};if(sessionStorage.getItem('seenKotrynaIntro'))veil.remove();
-   </script>
-  </main>
-  <footer class="footer">
-   KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈
-  </footer>
-  <script src="main.js">
-  </script>
- </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111e2d">
+  <title>Welcome · Kotryna XVIII</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="main.js?v=5" defer></script>
+</head>
+<body data-page="index.html">
+  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="topbar">
+      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
+      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+    </header>
+    <main class="screen">
+<section class="hero hero-intro">
+  <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+  <span class="eyebrow">✧ A NEW CHAPTER BEGINS ✧</span>
+  <div class="hero-art" aria-label="A magical cat companion"><span class="moon">☾</span><span class="cat-icon">🐈</span><span class="spark one">✦</span><span class="spark two">✧</span></div>
+  <div class="level-emblem">18</div>
+  <h1>Happy Birthday,<br><em>Kotryna</em></h1>
+  <p>Your story has reached a legendary chapter. A little world was made just for you.</p>
+  <div class="rarity">★★★★★ <span>LEGENDARY TRAVELER</span></div>
+  <a class="game-button primary wide" href="world.html">ENTER YOUR WORLD <span>➜</span></a>
+  <p class="tiny">Best experienced with sound on ✦</p>
+</section>
+</main>
+  </div>
+  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link selected" aria-label="Home"><span>⌂</span><small>Home</small></a>
+<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
+<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
+<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
+<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
+<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
 </html>

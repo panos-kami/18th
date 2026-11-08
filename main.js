@@ -1,88 +1,383 @@
-const videoPeople=[['Dad','dad.mp4','🧔'],['Mom','mom.mp4','💗'],['Sister','sister.mp4','🌸'],['Marija','marija.mp4','💫'],['Tėja','teja.mp4','🌙'],['Grandma','grandma.mp4','🌼'],['Indraja','indraja.mp4','✨']];
-// Add another greeting by adding an entry above, for example ['Friend','friend.mp4','💌'].
-const KEY='kotryna-18-progress-v2';const state=JSON.parse(localStorage.getItem(KEY)||'{}');function save(){localStorage.setItem(KEY,JSON.stringify(state))}function setDone(k){state[k]=true;save();document.querySelectorAll('[data-achievement]').forEach(x=>{x.textContent=state[x.dataset.achievement]?'✓ Completed':'Not yet completed'})}function notice(s){const el=document.getElementById('notice');if(el){el.textContent=s;el.hidden=false}}
-function photoFallback(img){const stem=img.dataset.stem;const ext=['jpeg','jpg','png','webp'];let i=Number(img.dataset.try||0);if(i<ext.length-1){i++;img.dataset.try=i;img.src=stem+'.'+ext[i]}else{img.hidden=true;img.parentElement.querySelector('.photo-fallback').hidden=false}}
-function makePhotos() {
-  const target = document.getElementById('photos');
+"use strict";
 
-  if (!target) {
-    return;
+const STORE_KEY = "kotryna-birthday-rpg-v5";
+const MUSIC_FLAG = "kotryna-start-song";
+const VIDEO_PEOPLE = [
+  { name: "Dad", file: "dad.mp4", icon: "👨" },
+  { name: "Mom", file: "mom.mp4", icon: "💗" },
+  { name: "Sister", file: "sister.mp4", icon: "🌸" },
+  { name: "Marija", file: "marija.mp4", icon: "✨" },
+  { name: "Tėja", file: "teja.mp4", icon: "🌙" },
+  { name: "Grandma", file: "grandma.mp4", icon: "🌼" },
+  { name: "Indraja", file: "indraja.mp4", icon: "💫" }
+];
+// To add another video, add another object above with a filename in the same folder.
+
+function loadProgress() {
+  try {
+    return JSON.parse(localStorage.getItem(STORE_KEY)) || {};
+  } catch (error) {
+    return {};
   }
+}
+
+const progress = loadProgress();
+
+function saveProgress() {
+  try {
+    localStorage.setItem(STORE_KEY, JSON.stringify(progress));
+  } catch (error) {
+    // Site remains playable when storage is disabled.
+  }
+}
+
+function unlock(key) {
+  if (!progress[key]) {
+    progress[key] = true;
+    saveProgress();
+    notify("✦ Achievement unlocked! +100 stars");
+  }
+  updateProgress();
+}
+
+function notify(message) {
+  const toast = document.querySelector("#toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(notify.timeout);
+  notify.timeout = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+function updateProgress() {
+  const keys = ["stars", "cat", "runes"];
+  const completed = keys.filter(key => progress[key]).length;
+  const starTotal = document.querySelector("#starTotal");
+  const questsProgress = document.querySelector("#questsProgress");
+  const questsFill = document.querySelector("#questsFill");
+  const rewards = document.querySelector("#rewards");
+  const claim = document.querySelector("#claimReward");
+
+  if (starTotal) starTotal.textContent = completed * 100;
+  if (questsProgress) questsProgress.textContent = `${completed} / 3`;
+  if (questsFill) questsFill.style.width = `${(completed / 3) * 100}%`;
+
+  if (rewards) {
+    rewards.innerHTML = keys.map((key, index) => `
+      <div class="reward ${progress[key] ? "earned" : ""}">
+        <div>${["✦", "🐾", "☽"][index]}</div>
+        <small>${["Starfall", "Cat Café", "Rune Match"][index]}</small>
+      </div>
+    `).join("");
+  }
+
+  if (claim) {
+    claim.classList.toggle("locked", completed !== 3);
+    claim.textContent = completed === 3
+      ? "★ CLAIM LEGENDARY REWARD ➜"
+      : `🔒 COMPLETE THREE TRIALS (${completed}/3)`;
+  }
+}
+
+function initPhotos() {
+  const timeline = document.querySelector("#photoTimeline");
+  if (!timeline) return;
 
   for (let age = 1; age <= 18; age++) {
-    const card = document.createElement('article');
-    card.className = 'card photo-card';
+    const card = document.createElement("article");
+    card.className = "photo-card";
+    card.innerHTML = `
+      <div class="photo-top">
+        <small>✧ STORY CHAPTER ${String(age).padStart(2, "0")}</small>
+        <span>${age} / 18</span>
+      </div>
+      <div class="photo-frame">
+        <img src="photo-age${age}.jpeg" alt="Kotryna at age ${age}" loading="${age < 3 ? "eager" : "lazy"}">
+        <div class="photo-missing hidden">
+          <span>◈</span>
+          Add <code>photo-age${age}.jpeg</code> to this folder
+        </div>
+      </div>
+      <h2>Age ${age}</h2>
+      <p>✦ A CHAPTER OF YOUR STORY ✦</p>
+    `;
 
-    const frame = document.createElement('div');
-    frame.className = 'photo-frame';
-
-    const image = document.createElement('img');
-    image.src = `photo-age${age}.jpeg`;
-    image.alt = `Kotryna at age ${age}`;
-    image.loading = age <= 2 ? 'eager' : 'lazy';
-    image.decoding = 'async';
-
-    const fallback = document.createElement('div');
-    fallback.className = 'photo-fallback';
-    fallback.hidden = true;
-    fallback.innerHTML = `<strong>✦ ${age} ✦</strong><span>Missing: photo-age${age}.jpeg</span>`;
-
-    image.addEventListener('error', () => {
-      image.hidden = true;
-      fallback.hidden = false;
+    const photo = card.querySelector("img");
+    const placeholder = card.querySelector(".photo-missing");
+    const extensions = ["jpeg", "jpg", "png", "webp", "JPG", "JPEG"];
+    let attempted = 0;
+    photo.addEventListener("error", () => {
+      attempted += 1;
+      if (attempted < extensions.length) {
+        photo.src = `photo-age${age}.${extensions[attempted]}`;
+      } else {
+        photo.classList.add("hidden");
+        placeholder.classList.remove("hidden");
+      }
     });
 
-    frame.append(image, fallback);
-
-    const heading = document.createElement('h3');
-    heading.textContent = `Chapter ${String(age).padStart(2, '0')}`;
-
-    const tag = document.createElement('span');
-    tag.className = 'tag';
-    tag.textContent = `Age ${age} ✦`;
-
-    card.append(frame, heading, tag);
-    target.append(card);
+    timeline.append(card);
   }
-
-  setDone('journey');
 }
 
-function makeVideos(){const target=document.getElementById('videos');if(!target)return;for(const [name,file,emoji] of videoPeople){const c=document.createElement('article');c.className='panel video-card';c.innerHTML=`<div class="eyebrow">A special message</div><h3>${emoji} ${name}</h3><video controls playsinline preload="none"><source src="${file}" type="video/mp4">Your browser cannot play this video.</video><div class="video-missing" hidden><div><b>🎬</b> Add <code>${file}</code> beside the HTML files</div></div>`;const vid=c.querySelector('video');vid.addEventListener('error',()=>{vid.hidden=true;c.querySelector('.video-missing').hidden=false});vid.querySelector('source').addEventListener('error',()=>{vid.hidden=true;c.querySelector('.video-missing').hidden=false});target.append(c)}setDone('voices')}
-function initMusic(){
-  const btn=document.getElementById('musicBtn'),audio=document.getElementById('birthdayAudio');
-  if(!btn||!audio)return;
-  if(new URLSearchParams(window.location.search).has('embedded')){
-    const musicbox=document.querySelector('.musicbox');
-    if(musicbox) musicbox.hidden=true;
-    audio.removeAttribute('autoplay');
-    audio.pause();
-    return;
-  }
-  let stoppedByUser=false;
-  const syncButton=()=>{btn.textContent=audio.paused?'♫ Play music':'⏸ Pause music'};
-  async function tryStart(){
-    if(stoppedByUser||!audio.paused)return;
-    try { await audio.play(); syncButton(); clearTriggers(); }
-    catch(e) { syncButton(); } // Browser may block unmuted autoplay.
-  }
-  const events=['pointerdown','keydown','touchstart'];
-  function clearTriggers(){events.forEach(event=>document.removeEventListener(event,onInteraction,true));}
-  function onInteraction(e){
-    if(e.target===btn || btn.contains(e.target))return;
-    tryStart();
-  }
-  events.forEach(event=>document.addEventListener(event,onInteraction,true));
-  btn.addEventListener('click',async()=>{
-    if(audio.paused){stoppedByUser=false;try{await audio.play();syncButton();clearTriggers()}catch(e){notice('Music cannot start automatically here. Please tap Play music.')}}
-    else{stoppedByUser=true;audio.pause();syncButton()}
+function initMusic() {
+  const audio = document.querySelector("#birthdayAudio");
+  const toggle = document.querySelector("#musicToggle");
+  if (!audio || !toggle) return;
+
+  const updateButton = () => {
+    toggle.textContent = audio.paused ? "▶" : "Ⅱ";
+    toggle.setAttribute("aria-label", audio.paused ? "Play music" : "Pause music");
+  };
+
+  const playSong = () => {
+    audio.play().then(updateButton).catch(() => {
+      notify("Tap ▶ to start the birthday song ♪");
+    });
+  };
+
+  toggle.addEventListener("click", () => {
+    if (audio.paused) {
+      playSong();
+    } else {
+      audio.pause();
+      updateButton();
+    }
   });
-  audio.addEventListener('play',syncButton);
-  audio.addEventListener('pause',syncButton);
-  audio.addEventListener('error',()=>{btn.title='Check that birthday-music.mp3 is beside journey.html'});
-  tryStart();
+
+  audio.addEventListener("play", updateButton);
+  audio.addEventListener("pause", updateButton);
+
+  if (sessionStorage.getItem(MUSIC_FLAG) === "yes") {
+    sessionStorage.removeItem(MUSIC_FLAG);
+    playSong();
+  }
 }
-function initGame(){const arena=document.getElementById('gameArea');if(!arena)return;let count=Number(state.stars||0);const out=document.getElementById('count'),bar=document.getElementById('starBar');function paint(){out.textContent=count;bar.style.width=count/18*100+'%';if(count>=18){setDone('stars');notice('Quest complete! You collected all 18 starlight wishes. ✨')}}paint();function spawn(){arena.innerHTML='';if(count>=18){arena.innerHTML='<div style="display:grid;place-items:center;height:100%;text-align:center;font-size:25px">✦ All 18 stars collected! ✦<br>Quest complete 🐈</div>';return}for(let i=0;i<Math.min(5,18-count);i++){let b=document.createElement('button');b.className='star';b.textContent=['✦','⭐','✧'][i%3];b.setAttribute('aria-label','Collect a star');b.style.left=(8+Math.random()*82)+'%';b.style.top=(8+Math.random()*75)+'%';b.onclick=()=>{count++;state.stars=count;save();paint();spawn()};arena.append(b)}}spawn();document.getElementById('resetStars').onclick=()=>{count=0;state.stars=0;state.starsDone=false;save();paint();spawn()};let pets=Number(state.pets||0);const p=document.getElementById('petCount');p.textContent=pets;document.getElementById('petCat').onclick=()=>{pets++;state.pets=pets;save();p.textContent=pets;if(pets>=18){setDone('cats');notice('Purrfect! You earned the Cat Guardian badge. 🐈')}}}
-function initPuzzle(){const box=document.getElementById('puzzles');if(!box)return;const qs=[{q:'Which element pairs with Pyro for a Vaporize reaction?',a:['Hydro','Geo','Anemo'],ok:0},{q:'What lets you quickly move between discovered points on the map?',a:['Teleport Waypoints','Cooking pots','Treasure chests'],ok:0},{q:'What is Kotryna unlocking today?',a:['A new Adventure Rank','Her 18th birthday chapter','An ordinary Tuesday'],ok:1}];let idx=Number(state.quizIndex||0);function render(){if(idx>=qs.length){box.innerHTML='<h3>✧ Elemental Trial complete!</h3><p>All answers cleared. Your next adventure is waiting.</p>';setDone('quiz');return}let q=qs[idx];box.innerHTML=`<div class="eyebrow">Trial ${idx+1} / ${qs.length}</div><h3>${q.q}</h3><div class="quiz-options"></div>`;q.a.forEach((a,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=a;b.onclick=()=>{if(i===q.ok){b.classList.add('correct');setTimeout(()=>{idx++;state.quizIndex=idx;save();render()},350)}else{b.classList.add('wrong');setTimeout(()=>b.classList.remove('wrong'),650)}};box.querySelector('.quiz-options').append(b)})}render()}
-function initFinale(){const btn=document.getElementById('rewardBtn');if(!btn)return;btn.onclick=()=>{document.getElementById('reward').classList.add('show');setDone('finale');document.getElementById('reward').scrollIntoView({behavior:'smooth'})};const s=['stars','cats','quiz'];document.getElementById('completedQuests').textContent=s.filter(x=>state[x]).length+' / 3';}
-document.addEventListener('DOMContentLoaded',()=>{const b=document.querySelector('.menuBtn');b?.addEventListener('click',()=>document.querySelector('.links').classList.toggle('open'));makePhotos();makeVideos();initMusic();initGame();initPuzzle();initFinale();document.querySelectorAll('[data-achievement]').forEach(x=>x.textContent=state[x.dataset.achievement]?'✓ Completed':'Not yet completed')});
+
+function initStoryLink() {
+  document.querySelectorAll("[data-start-story]").forEach(link => {
+    link.addEventListener("click", () => {
+      sessionStorage.setItem(MUSIC_FLAG, "yes");
+    });
+  });
+}
+
+function initVideos() {
+  const list = document.querySelector("#videoList");
+  if (!list) return;
+
+  VIDEO_PEOPLE.forEach((person, index) => {
+    const article = document.createElement("article");
+    article.className = "video-card";
+    article.innerHTML = `
+      <div class="video-top">
+        <span class="video-avatar">${person.icon}</span>
+        <div>
+          <small>MESSAGE ${String(index + 1).padStart(2, "0")}</small>
+          <strong>${person.name}</strong>
+          <span class="video-status">A message waiting for you</span>
+        </div>
+      </div>
+      <button class="game-button secondary video-trigger" type="button">✉ OPEN MESSAGE</button>
+      <div class="video-holder"></div>
+    `;
+
+    const button = article.querySelector(".video-trigger");
+    button.addEventListener("click", () => {
+      if (article.querySelector("video")) return;
+      const video = document.createElement("video");
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.src = person.file;
+      video.addEventListener("error", () => {
+        article.querySelector(".video-status").textContent = `Waiting for ${person.file}`;
+      });
+      article.querySelector(".video-holder").append(video);
+      button.remove();
+      video.play().catch(() => {});
+    });
+    list.append(article);
+  });
+}
+
+let starTimer = null;
+let starSpawn = null;
+
+function initStarfall() {
+  const arena = document.querySelector("#starArena");
+  const start = document.querySelector("#startStars");
+  if (!arena || !start) return;
+
+  let score = 0;
+  let time = 20;
+
+  function showStar() {
+    arena.querySelectorAll(".falling-star").forEach(el => el.remove());
+    const star = document.createElement("button");
+    star.type = "button";
+    star.className = "falling-star";
+    star.setAttribute("aria-label", "Catch star");
+    star.textContent = "✦";
+    star.style.left = `${Math.random() * Math.max(0, arena.clientWidth - 62)}px`;
+    star.style.top = `${Math.random() * Math.max(0, arena.clientHeight - 62)}px`;
+    star.addEventListener("click", () => {
+      score++;
+      document.querySelector("#catchCount").textContent = score;
+      if (score >= 10) {
+        stop("✦ Starfall complete! You caught all ten stars.");
+        unlock("stars");
+      } else {
+        showStar();
+      }
+    });
+    arena.append(star);
+  }
+
+  function stop(message) {
+    clearInterval(starTimer);
+    clearInterval(starSpawn);
+    starTimer = null;
+    starSpawn = null;
+    arena.innerHTML = `<div class="arena-hint">${message}</div>`;
+    start.disabled = false;
+    start.textContent = "REPLAY STARFALL ↻";
+  }
+
+  start.addEventListener("click", () => {
+    clearInterval(starTimer);
+    clearInterval(starSpawn);
+    score = 0;
+    time = 20;
+    document.querySelector("#catchCount").textContent = score;
+    document.querySelector("#catchTimer").textContent = time;
+    arena.innerHTML = "";
+    start.disabled = true;
+    start.textContent = "HUNT IN PROGRESS…";
+    showStar();
+    starSpawn = setInterval(showStar, 1200);
+    starTimer = setInterval(() => {
+      time--;
+      document.querySelector("#catchTimer").textContent = time;
+      if (time <= 0) stop("Time is up! Try once more, traveler.");
+    }, 1000);
+  });
+}
+
+function initCatCafe() {
+  const dialogue = document.querySelector("#catDialogue");
+  const countLabel = document.querySelector("#treatCount");
+  if (!dialogue || !countLabel) return;
+  let fish = 0;
+  document.querySelectorAll("[data-treat]").forEach(button => {
+    button.addEventListener("click", () => {
+      if (button.dataset.treat !== "fish") {
+        dialogue.textContent = "Mew! That's fun, but I'm craving fish! 🐟";
+        return;
+      }
+      fish = Math.min(3, fish + 1);
+      countLabel.textContent = fish;
+      dialogue.textContent = fish >= 3
+        ? "PURRR! You've won the Cat Guardian's friendship! 💛"
+        : `Purr… ${3 - fish} more fish, please! 🐟`;
+      if (fish >= 3) unlock("cat");
+    });
+  });
+}
+
+function initRunes() {
+  const grid = document.querySelector("#runeGrid");
+  if (!grid) return;
+  let opened = [];
+  let locked = false;
+  let matched = 0;
+  let moves = 0;
+  let turnTimeout = null;
+  const symbols = ["☀", "☾", "✿", "✦"];
+
+  function render() {
+    clearTimeout(turnTimeout);
+    opened = [];
+    locked = false;
+    matched = 0;
+    moves = 0;
+    document.querySelector("#pairCount").textContent = matched;
+    document.querySelector("#moveCount").textContent = moves;
+    grid.innerHTML = "";
+    const tiles = [...symbols, ...symbols].sort(() => Math.random() - .5);
+    tiles.forEach(symbol => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "rune-tile";
+      button.textContent = "✧";
+      button.setAttribute("aria-label", "Reveal rune");
+      button.dataset.symbol = symbol;
+      button.addEventListener("click", () => {
+        if (locked || button.disabled || opened.includes(button)) return;
+        button.classList.add("open");
+        button.textContent = symbol;
+        opened.push(button);
+        if (opened.length !== 2) return;
+        moves++;
+        document.querySelector("#moveCount").textContent = moves;
+        const [first, second] = opened;
+        if (first.dataset.symbol === second.dataset.symbol) {
+          first.classList.add("matched");
+          second.classList.add("matched");
+          first.disabled = true;
+          second.disabled = true;
+          matched++;
+          document.querySelector("#pairCount").textContent = matched;
+          opened = [];
+          if (matched === 4) unlock("runes");
+        } else {
+          locked = true;
+          turnTimeout = setTimeout(() => {
+            first.classList.remove("open");
+            second.classList.remove("open");
+            first.textContent = "✧";
+            second.textContent = "✧";
+            opened = [];
+            locked = false;
+          }, 800);
+        }
+      });
+      grid.append(button);
+    });
+  }
+
+  document.querySelector("#restartRunes").addEventListener("click", render);
+  render();
+}
+
+function initTrials() {
+  const tabs = [...document.querySelectorAll(".quest-tab")];
+  if (!tabs.length) return;
+  const panels = { stars: "trialStars", cat: "trialCat", runes: "trialRunes" };
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(other => {
+        const active = other === tab;
+        other.classList.toggle("active", active);
+        other.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      Object.entries(panels).forEach(([key, id]) => {
+        document.getElementById(id).classList.toggle("hidden", key !== tab.dataset.trial);
+      });
+    });
+  });
+  initStarfall();
+  initCatCafe();
+  initRunes();
+}
+
+function init() {
+  updateProgress();
+  initStoryLink();
+  initPhotos();
+  initMusic();
+  initVideos();
+  initTrials();
+}
+
+document.addEventListener("DOMContentLoaded", init);
