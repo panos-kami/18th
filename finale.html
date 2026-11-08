@@ -3,31 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111e2d">
-  <title>Legendary Reward · Kotryna XVIII</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="main.js?v=5" defer></script>
+  <meta name="theme-color" content="#f4e8c2">
+  <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
+  <title>Birthday Reward · Kotryna's Adventure</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="main.js?v=11" defer></script>
 </head>
 <body data-page="finale.html">
-  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true"></div>
   <div class="game-shell">
     <header class="topbar">
-      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
-      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+      <a class="brand" href="index.html"><span class="brand-star">✿</span> KOTRYNA <b>XVIII</b></a>
+      <div class="level-pill">✦ LEVEL 18</div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </header>
+    <nav class="top-nav" id="topNav" aria-label="Main menu">
+          <a class="nav-item " href="index.html">Home</a>
+          <a class="nav-item " href="world.html">World</a>
+          <a class="nav-item " href="journey.html">18 Years</a>
+          <a class="nav-item " href="videos.html">Messages</a>
+          <a class="nav-item " href="game.html">Quests</a>
+          <a class="nav-item current" href="finale.html">Reward</a>
+    </nav>
     <main class="screen">
-<section class="screen-heading"><div class="eyebrow">★ FINAL CHAPTER</div><h1>Legendary <em>Reward</em></h1><p>Every great journey deserves a magical ending.</p></section>
-<section class="finale-card ornate"><div class="treasure-glow"><span class="treasure">🎁</span><span class="treasure-spark">✦ ✧ ✦</span></div><div class="rarity">★★★★★ <span>LEGENDARY DROP</span></div><h2>A New Adventure Begins</h2><p>Happy 18th birthday, Kotryna!</p><p>May this year bring you incredible adventures, beautiful surprises, unforgettable memories, and all the happiness your heart can hold.</p><p>May you always be surrounded by people who love you, worlds worth exploring, and, of course, plenty of cats. 🐾</p><p class="gold-text">The best chapters are still ahead of you.</p><div class="seals">✦ &nbsp; LEVEL 18 UNLOCKED &nbsp; ✦</div></section>
-<div class="tip"><span>🐈</span><span>Thanks for exploring this little world, legendary traveler.</span></div>
-<a class="game-button secondary wide" href="world.html">RETURN TO ADVENTURE MAP ↺</a>
-</main>
+      <section class="screen-heading"><span class="chapter-kicker">THE FINAL CHAPTER</span><h1>A Gift for <em>Kotryna</em></h1><p>Every adventure deserves a beautiful ending — and an even more beautiful beginning.</p></section>
+      <section class="treasure-scene">
+        <div class="treasure-sun">✦</div>
+        <div class="treasure-box">🎁</div>
+        <h2>Legendary Birthday Treasure</h2>
+        <p>Rarity: ★★★★★ &nbsp; · &nbsp; For Kotryna Only</p>
+      </section>
+      <section class="letter-paper">
+        <div class="letter-stamp">✿</div>
+        <small>LEVEL 18 · NEW CHAPTER UNLOCKED</small>
+        <h2>Happy 18th Birthday, Kotryna!</h2>
+        <p>Today marks the start of a whole new adventure. May this chapter be full of beautiful surprises, kind people, unforgettable moments, and dreams coming true.</p>
+        <p>May you always find new worlds to explore, reasons to smile, and people who remind you how special you are.</p>
+        <p>Here's to all the adventures still waiting for you. Your story is only getting started.</p>
+        <strong>✦ The best chapter is ahead ✦</strong>
+      </section>
+      <a href="world.html" class="game-button secondary wide">↶ EXPLORE YOUR WORLD AGAIN</a>
+    </main>
+    <footer class="site-footer">✿ A little world made just for Kotryna ✿</footer>
   </div>
-  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
-<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
-<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
-<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
-<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
-<a href="finale.html" class="nav-link selected" aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

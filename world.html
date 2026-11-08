@@ -3,44 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111e2d">
-  <title>World Map · Kotryna XVIII</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="main.js?v=5" defer></script>
+  <meta name="theme-color" content="#f4e8c2">
+  <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
+  <title>World Map · Kotryna's Adventure</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="main.js?v=11" defer></script>
 </head>
 <body data-page="world.html">
-  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true"></div>
   <div class="game-shell">
     <header class="topbar">
-      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
-      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+      <a class="brand" href="index.html"><span class="brand-star">✿</span> KOTRYNA <b>XVIII</b></a>
+      <div class="level-pill">✦ LEVEL 18</div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </header>
+    <nav class="top-nav" id="topNav" aria-label="Main menu">
+          <a class="nav-item " href="index.html">Home</a>
+          <a class="nav-item current" href="world.html">World</a>
+          <a class="nav-item " href="journey.html">18 Years</a>
+          <a class="nav-item " href="videos.html">Messages</a>
+          <a class="nav-item " href="game.html">Quests</a>
+          <a class="nav-item " href="finale.html">Reward</a>
+    </nav>
     <main class="screen">
-<section class="screen-heading">
-  <div class="eyebrow">✦ CHAPTER SELECT</div>
-  <h1>Adventure Map</h1>
-  <p>Follow the magical pawprints. Every destination holds part of your story.</p>
-</section>
-<section class="world-banner ornate">
-  <div class="floating-island"><span class="island-moon">☽</span><span class="island-cat">🐈</span><span class="island-spark">✦ ✧ ✦</span></div>
-  <div><span class="eyebrow">NEW REGION DISCOVERED</span><h2>The Kingdom of Eighteen</h2><p>Explore your birthday realm</p></div>
-</section>
-<div class="section-label"><span>✧</span> TELEPORT WAYPOINTS <span>✧</span></div>
-<section class="destinations">
-  <a class="destination" href="journey.html" data-start-story><span class="dest-icon">◈</span><span class="dest-copy"><small>CHAPTER 01 · STORY QUEST</small><strong>18 Years of Magic</strong><span>18 portraits • a song for you</span></span><span class="dest-arrow">➜</span></a>
-  <a class="destination" href="videos.html"><span class="dest-icon">✉</span><span class="dest-copy"><small>CHAPTER 02 · MESSAGES</small><strong>Voices of Home</strong><span>Special birthday greetings</span></span><span class="dest-arrow">➜</span></a>
-  <a class="destination" href="game.html"><span class="dest-icon">⚔</span><span class="dest-copy"><small>CHAPTER 03 · ADVENTURE</small><strong>The Cat Guardian Trials</strong><span>Three real mini games</span></span><span class="dest-arrow">➜</span></a>
-  <a class="destination" href="finale.html"><span class="dest-icon">★</span><span class="dest-copy"><small>FINAL CHAPTER · REWARD</small><strong>Legendary Birthday Gift</strong><span>A message from your world</span></span><span class="dest-arrow">➜</span></a>
-</section>
-<div class="tip"><span>🐾</span><span>Your loyal cat guide is waiting. Tap any quest to begin!</span></div>
-</main>
+      <section class="screen-heading">
+        <span class="chapter-kicker">REGION 01 · UNLOCKED</span>
+        <h1>The Birthday <em>Kingdom</em></h1>
+        <p>Choose a destination and follow the pawprints. Your adventure starts here!</p>
+      </section>
+      <section class="landscape" aria-label="Illustrated birthday adventure map">
+        <div class="landscape-sun">☀</div>
+        <div class="far-mountain left"></div>
+        <div class="far-mountain right"></div>
+        <div class="hill hill-a"></div>
+        <div class="hill hill-b"></div>
+        <div class="path-ribbon"></div>
+        <span class="map-tree tree-one">🌳</span>
+        <span class="map-tree tree-two">🌲</span>
+        <span class="map-tree tree-three">🌳</span>
+        <a class="map-pin pin-story" href="journey.html" data-start-story>📷 <small>STORY</small></a>
+        <a class="map-pin pin-voices" href="videos.html">💌 <small>VOICES</small></a>
+        <a class="map-pin pin-games" href="game.html">🐾 <small>QUESTS</small></a>
+        <a class="map-pin pin-finale" href="finale.html">🎁 <small>REWARD</small></a>
+      </section>
+      <div class="companion speech-panel">
+        <span class="companion-cat" aria-hidden="true">🐈</span>
+        <div><small>YOUR COMPANION · MOCHI</small><strong>Meow! Ready to explore?</strong><p>Every place has a little surprise waiting for you!</p></div>
+      </div>
+      <section class="regions">
+        <div class="section-title">✦ QUEST DESTINATIONS ✦</div>
+        <a class="region-card" href="journey.html" data-start-story><span class="region-icon">📖</span><span><small>MAIN STORY · 01</small><strong>18 Years of Wonder</strong><em>Photos from age 1 to 18 · Birthday song</em></span><span class="region-arrow">➜</span></a>
+        <a class="region-card" href="videos.html"><span class="region-icon">💌</span><span><small>MAIN STORY · 02</small><strong>Letters from Home</strong><em>Video wishes from loved ones</em></span><span class="region-arrow">➜</span></a>
+        <a class="region-card" href="game.html"><span class="region-icon">🐈</span><span><small>ADVENTURE · 03</small><strong>Mochi's Adventure</strong><em>Three quests and magical rewards</em></span><span class="region-arrow">➜</span></a>
+        <a class="region-card" href="finale.html"><span class="region-icon">🎁</span><span><small>FINAL CHAPTER</small><strong>Birthday Treasure</strong><em>Claim your special reward</em></span><span class="region-arrow">➜</span></a>
+      </section>
+    </main>
+    <footer class="site-footer">✿ A little world made just for Kotryna ✿</footer>
   </div>
-  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
-<a href="world.html" class="nav-link selected" aria-label="Map"><span>✧</span><small>Map</small></a>
-<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
-<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
-<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
-<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

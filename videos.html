@@ -3,32 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111e2d">
-  <title>Birthday Voices · Kotryna XVIII</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="main.js?v=5" defer></script>
+  <meta name="theme-color" content="#f4e8c2">
+  <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
+  <title>Birthday Wishes · Kotryna's Adventure</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="main.js?v=11" defer></script>
 </head>
 <body data-page="videos.html">
-  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true"></div>
   <div class="game-shell">
     <header class="topbar">
-      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
-      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+      <a class="brand" href="index.html"><span class="brand-star">✿</span> KOTRYNA <b>XVIII</b></a>
+      <div class="level-pill">✦ LEVEL 18</div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </header>
+    <nav class="top-nav" id="topNav" aria-label="Main menu">
+          <a class="nav-item " href="index.html">Home</a>
+          <a class="nav-item " href="world.html">World</a>
+          <a class="nav-item " href="journey.html">18 Years</a>
+          <a class="nav-item current" href="videos.html">Messages</a>
+          <a class="nav-item " href="game.html">Quests</a>
+          <a class="nav-item " href="finale.html">Reward</a>
+    </nav>
     <main class="screen">
-<section class="screen-heading"><div class="eyebrow">✉ STORY QUEST · 02</div><h1>Voices of <em>Home</em></h1><p>Special messages from the people who love you. Tap a message to open it.</p></section>
-<div class="npc-intro"><span class="npc-cat">🐈</span><p>Meow! I've collected some very special messages for you, traveler.</p></div>
-<section id="videoList" class="video-list" aria-label="Birthday video messages"></section>
-<div class="tip"><span>✉</span><span>More messages can be added later. Each one has its own portal.</span></div>
-<a class="game-button primary wide" href="game.html">CONTINUE TO THE CAT TRIALS ➜</a>
-</main>
+      <section class="screen-heading">
+        <span class="chapter-kicker">CHAPTER 02 · THE MESSAGE GARDEN</span>
+        <h1>Voices Full of <em>Love</em></h1>
+        <p>Messages from people who are cheering you on in every chapter. Tap a letter to open it.</p>
+      </section>
+      <div class="companion speech-panel"><span class="companion-cat">🐈</span><div><small>MOCHI SAYS</small><strong>Special delivery!</strong><p>Every letter is a little gift. Open them whenever you like.</p></div></div>
+      <section id="videoList" class="video-list"></section>
+      <a class="game-button primary wide" href="game.html">NEXT CHAPTER · PLAY WITH MOCHI ➜</a>
+    </main>
+    <footer class="site-footer">✿ A little world made just for Kotryna ✿</footer>
   </div>
-  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
-<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
-<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
-<a href="videos.html" class="nav-link selected" aria-label="Voices"><span>✉</span><small>Voices</small></a>
-<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
-<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

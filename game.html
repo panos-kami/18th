@@ -3,35 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111e2d">
-  <title>Cat Guardian Trials · Kotryna XVIII</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="main.js?v=5" defer></script>
+  <meta name="theme-color" content="#f4e8c2">
+  <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
+  <title>Mochi’s Adventures · Kotryna's Adventure</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="main.js?v=11" defer></script>
 </head>
 <body data-page="game.html">
-  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true"></div>
   <div class="game-shell">
     <header class="topbar">
-      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
-      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+      <a class="brand" href="index.html"><span class="brand-star">✿</span> KOTRYNA <b>XVIII</b></a>
+      <div class="level-pill">✦ LEVEL 18</div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </header>
+    <nav class="top-nav" id="topNav" aria-label="Main menu">
+          <a class="nav-item " href="index.html">Home</a>
+          <a class="nav-item " href="world.html">World</a>
+          <a class="nav-item " href="journey.html">18 Years</a>
+          <a class="nav-item " href="videos.html">Messages</a>
+          <a class="nav-item current" href="game.html">Quests</a>
+          <a class="nav-item " href="finale.html">Reward</a>
+    </nav>
     <main class="screen">
-<section class="screen-heading"><div class="eyebrow">⚔ ADVENTURE · CHAPTER 03</div><h1>Guardian <em>Trials</em></h1><p>Three challenges stand between you and the birthday treasure. Your companion believes in you!</p></section>
-<div class="player-panel ornate"><div class="avatar-ring">🐈</div><div class="player-copy"><small>YOUR COMPANION</small><strong>Mochi · Cat Guardian</strong><div class="health-bar"><span></span></div><small>LVL 18 · FRIENDSHIP MAX</small></div><div class="power">✧<span>MAX</span></div></div>
-<div class="quest-summary"><span>TRIAL COMPLETION</span><strong id="questsProgress">0 / 3</strong></div><div class="progress-rail"><div id="questsFill" class="progress-fill"></div></div>
-<div class="quest-tabs" role="tablist" aria-label="Choose a quest"><button class="quest-tab active" data-trial="stars" role="tab" aria-selected="true"><span>✦</span> Starfall</button><button class="quest-tab" data-trial="cat" role="tab" aria-selected="false"><span>🐾</span> Cat Café</button><button class="quest-tab" data-trial="runes" role="tab" aria-selected="false"><span>☽</span> Rune Match</button></div>
-<section class="trial-panel ornate" id="trialStars"><div class="trial-title"><span class="quest-number">I</span><div><small>TRIAL OF THE STARS</small><h2>Starfall Hunt</h2></div></div><p>Catch 10 glowing stars before the 20-second timer ends!</p><div class="battle-hud"><span>✦ <b id="catchCount">0</b> / 10</span><span>⏱ <b id="catchTimer">20</b>s</span></div><div id="starArena" class="star-arena"><div class="arena-hint" id="arenaHint">Tap START to summon the stars</div></div><button class="game-button primary wide" id="startStars" type="button">START STARFALL ⚔</button></section>
-<section class="trial-panel ornate hidden" id="trialCat"><div class="trial-title"><span class="quest-number">II</span><div><small>TRIAL OF THE GUARDIAN</small><h2>Cat Café</h2></div></div><p>Mochi is hungry! Give your companion the right treat three times.</p><div id="catMood" class="cat-portrait">🐈</div><div class="cat-dialogue" id="catDialogue">Mrrp! I would love something tasty… 🐟</div><div class="battle-hud"><span>RIGHT TREATS <b id="treatCount">0</b> / 3</span></div><div class="treat-grid"><button data-treat="fish" type="button">🐟<small>Fish</small></button><button data-treat="yarn" type="button">🧶<small>Yarn</small></button><button data-treat="leaf" type="button">🍃<small>Leaf</small></button></div></section>
-<section class="trial-panel ornate hidden" id="trialRunes"><div class="trial-title"><span class="quest-number">III</span><div><small>TRIAL OF MEMORY</small><h2>Rune Match</h2></div></div><p>Reveal the magical runes. Match all four pairs to restore the constellation.</p><div class="battle-hud"><span>PAIRS <b id="pairCount">0</b> / 4</span><span>MOVES <b id="moveCount">0</b></span></div><div id="runeGrid" class="rune-grid"></div><button class="game-button secondary wide" id="restartRunes" type="button">RESHUFFLE RUNES ↻</button></section>
-<section class="rewards-panel"><div class="eyebrow">✧ ADVENTURER'S REWARDS</div><div id="rewards" class="rewards"></div><a id="claimReward" href="finale.html" class="game-button primary wide locked">🔒 COMPLETE THREE TRIALS</a></section>
-</main>
+      <section class="screen-heading">
+        <span class="chapter-kicker">CHAPTER 03 · THE GARDEN TRIALS</span>
+        <h1>Mochi's <em>Adventure</em></h1>
+        <p>Three quests. Three magical badges. Complete them to unlock your birthday treasure!</p>
+      </section>
+      <div class="companion speech-panel"><span class="companion-cat">🐈</span><div><small>QUEST GUIDE</small><strong>Mochi · Your little teammate</strong><p>Let's collect stars, explore the garden and recover the lost runes.</p></div></div>
+      <section class="quest-board">
+        <div class="quest-summary"><span>QUEST LOG</span><strong id="questsProgress">0 / 3</strong></div>
+        <div class="progress-rail"><div class="progress-fill" id="questsFill"></div></div>
+        <div class="quest-tabs" role="tablist" aria-label="Choose quest">
+          <button type="button" class="quest-tab active" data-trial="stars" role="tab" aria-selected="true">✦ Star Hunt</button>
+          <button type="button" class="quest-tab" data-trial="cat" role="tab" aria-selected="false">🐾 Cat Garden</button>
+          <button type="button" class="quest-tab" data-trial="runes" role="tab" aria-selected="false">🌼 Rune Match</button>
+        </div>
+        <section class="trial-panel" id="trialStars">
+          <div class="trial-title"><div class="quest-number">01</div><div><small>FIELD QUEST</small><h2>Star Hunt</h2></div></div>
+          <p>Catch 10 falling stars before 20 seconds are up. Tap the glowing stars as they appear in the meadow!</p>
+          <div class="battle-hud"><span>✦ <b id="catchCount">0</b> / 10</span><span>⏳ <b id="catchTimer">20</b>s</span></div>
+          <div class="star-arena" id="starArena"><div class="arena-hint" id="arenaHint">Tap START to summon the stars</div></div>
+          <button class="game-button primary wide" id="startStars" type="button">✦ START STAR HUNT</button>
+        </section>
+        <section class="trial-panel hidden" id="trialCat">
+          <div class="trial-title"><div class="quest-number">02</div><div><small>COMPANION QUEST</small><h2>Cat Garden</h2></div></div>
+          <p>Our little explorer is hungry. Help Mochi find the right snack three times!</p>
+          <div id="catMood" class="cat-portrait">🐈</div>
+          <div class="cat-dialogue" id="catDialogue">Mrrp! Something fishy smells delicious… 🐟</div>
+          <div class="battle-hud"><span>HAPPY TREATS <b id="treatCount">0</b> / 3</span></div>
+          <div class="treat-grid"><button type="button" data-treat="fish">🐟<small>Fish</small></button><button type="button" data-treat="yarn">🧶<small>Yarn</small></button><button type="button" data-treat="leaf">🍃<small>Leaf</small></button></div>
+        </section>
+        <section class="trial-panel hidden" id="trialRunes">
+          <div class="trial-title"><div class="quest-number">03</div><div><small>PUZZLE QUEST</small><h2>Rune Match</h2></div></div>
+          <p>Turn over the magical tiles and find all four matching pairs!</p>
+          <div class="battle-hud"><span>PAIRS <b id="pairCount">0</b> / 4</span><span>FLIPS <b id="moveCount">0</b></span></div>
+          <div id="runeGrid" class="rune-grid"></div>
+          <button class="game-button secondary wide" id="restartRunes" type="button">↻ SHUFFLE TILES</button>
+        </section>
+        <div class="rewards-panel"><div class="section-title">✧ YOUR QUEST BADGES ✧</div><div class="rewards" id="rewards"></div><a href="finale.html" id="claimReward" class="game-button primary wide locked">🔒 COMPLETE ALL THREE QUESTS</a></div>
+      </section>
+    </main>
+    <footer class="site-footer">✿ A little world made just for Kotryna ✿</footer>
   </div>
-  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
-<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
-<a href="journey.html" class="nav-link " aria-label="Story"><span>◈</span><small>Story</small></a>
-<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
-<a href="game.html" class="nav-link selected" aria-label="Quests"><span>⚔</span><small>Quests</small></a>
-<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

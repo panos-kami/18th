@@ -1,6 +1,6 @@
 "use strict";
 
-const STORE_KEY = "kotryna-birthday-rpg-v5";
+const STORE_KEY = "kotryna-birthday-sunlit-v11";
 const MUSIC_FLAG = "kotryna-start-song";
 const VIDEO_PEOPLE = [
   { name: "Dad", file: "dad.mp4", icon: "👨" },
@@ -371,7 +371,21 @@ function initTrials() {
   initRunes();
 }
 
+function initNavigation() {
+  const toggle = document.querySelector("#menuToggle");
+  const nav = document.querySelector("#topNav");
+  if (!toggle || !nav) return;
+
+  // Horizontal game menu remains visible on mobile.
+  // This button scrolls the current section into view.
+  toggle.addEventListener("click", () => {
+    nav.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    toggle.setAttribute("aria-expanded", "true");
+  });
+}
+
 function init() {
+  initNavigation();
   updateProgress();
   initStoryLink();
   initPhotos();

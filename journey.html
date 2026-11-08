@@ -3,34 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111e2d">
-  <title>18 Years · Kotryna XVIII</title>
-  <link rel="stylesheet" href="style.css?v=5">
-  <script src="main.js?v=5" defer></script>
+  <meta name="theme-color" content="#f4e8c2">
+  <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
+  <title>18 Years · Kotryna's Adventure</title>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script src="main.js?v=11" defer></script>
 </head>
 <body data-page="journey.html">
-  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="clouds" aria-hidden="true"></div>
   <div class="game-shell">
     <header class="topbar">
-      <a class="crest" href="world.html"><span class="crest-icon">✦</span><span>KOTRYNA <b>XVIII</b></span></a>
-      <div class="top-stats"><span class="coin">✧ <b id="starTotal">0</b></span><span class="player-level">LVL 18</span></div>
+      <a class="brand" href="index.html"><span class="brand-star">✿</span> KOTRYNA <b>XVIII</b></a>
+      <div class="level-pill">✦ LEVEL 18</div>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </header>
+    <nav class="top-nav" id="topNav" aria-label="Main menu">
+          <a class="nav-item " href="index.html">Home</a>
+          <a class="nav-item " href="world.html">World</a>
+          <a class="nav-item current" href="journey.html">18 Years</a>
+          <a class="nav-item " href="videos.html">Messages</a>
+          <a class="nav-item " href="game.html">Quests</a>
+          <a class="nav-item " href="finale.html">Reward</a>
+    </nav>
     <main class="screen">
-<section class="screen-heading"><div class="eyebrow">◈ STORY QUEST · 01</div><h1>18 Years of <em>You</em></h1><p>Every year is a new chapter. Scroll through all eighteen — each memory has its own place.</p></section>
-<section class="story-player ornate"><div class="player-symbol">♫</div><div><strong>Soundtrack of Eighteen</strong><small>Play while exploring your story</small></div><button id="musicToggle" class="round-button" type="button" aria-label="Play birthday song">▶</button></section>
-<audio id="birthdayAudio" src="birthday-music.mp3" preload="auto" loop></audio>
-<div class="progress-caption"><span>CHAPTER PROGRESS</span><span>01 — 18</span></div>
-<div class="progress-rail"><div class="progress-fill" style="width:100%"></div></div>
-<section id="photoTimeline" class="photo-timeline" aria-label="18 photos, one for each age"></section>
-<div class="end-marker"><span>✧</span><h2>All 18 chapters discovered!</h2><p>Another adventure awaits you.</p><a class="game-button primary" href="videos.html">MEET YOUR PEOPLE ➜</a></div>
-</main>
+      <section class="screen-heading">
+        <span class="chapter-kicker">CHAPTER 01 · MEMORY ALBUM</span>
+        <h1>18 Years of <em>You</em></h1>
+        <p>From your very first year to the person you are today. Scroll through every chapter of your story.</p>
+      </section>
+      <section class="music-panel">
+        <span class="record">♫</span>
+        <div><small>NOW PLAYING</small><strong>Your Birthday Soundtrack</strong><span>The music for this adventure</span></div>
+        <button id="musicToggle" class="music-toggle" aria-label="Play music">▶</button>
+        <audio id="birthdayAudio" src="birthday-music.mp3" preload="auto"></audio>
+      </section>
+      <section id="photoTimeline" class="photo-timeline" aria-label="18 birthday photo chapters"></section>
+      <a class="game-button primary wide" href="videos.html">NEXT CHAPTER · BIRTHDAY MESSAGES ➜</a>
+    </main>
+    <footer class="site-footer">✿ A little world made just for Kotryna ✿</footer>
   </div>
-  <nav class="bottom-nav" aria-label="Main navigation"><a href="index.html" class="nav-link " aria-label="Home"><span>⌂</span><small>Home</small></a>
-<a href="world.html" class="nav-link " aria-label="Map"><span>✧</span><small>Map</small></a>
-<a href="journey.html" class="nav-link selected" aria-label="Story"><span>◈</span><small>Story</small></a>
-<a href="videos.html" class="nav-link " aria-label="Voices"><span>✉</span><small>Voices</small></a>
-<a href="game.html" class="nav-link " aria-label="Quests"><span>⚔</span><small>Quests</small></a>
-<a href="finale.html" class="nav-link " aria-label="Reward"><span>★</span><small>Reward</small></a></nav>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
