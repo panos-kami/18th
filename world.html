@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102a38"><title>World Map — Kotryna XVIII</title><link rel="stylesheet" href="style.css"></head><body><header><nav><a class="brand" href="index.html">✦ KOTRYNA · XVIII 🐾</a><button class="menuBtn" aria-label="Toggle menu">☰ Menu</button><div class="links"><a class="" href="index.html">Home</a><a class="active" href="world.html">World Map</a><a class="" href="journey.html">18 Years</a><a class="" href="videos.html">Messages</a><a class="" href="game.html">Quests</a><a class="" href="finale.html">Finale</a></div></nav></header><main class="shell"><div class="section-title"><div class="eyebrow">The world of Kotryna</div><h1>The Adventure Map</h1><p class="lead">Six locations. One very special birthday. Choose where to explore first.</p></div><div class="map"><div class="map-point" style="left:23%;top:21%"><a href="journey.html" data-start-story aria-label="18 Years">📖</a><span>The Memory Grove</span></div><div class="map-point" style="left:67%;top:18%"><a href="videos.html" aria-label="Birthday Messages">💌</a><span>Voices Village</span></div><div class="map-point" style="left:48%;top:47%"><a href="game.html" aria-label="Quests">🐈</a><span>Cat Sanctuary</span></div><div class="map-point" style="left:17%;top:76%"><a href="game.html#stars" aria-label="Starlight quest">⭐</a><span>Starlight Field</span></div><div class="map-point" style="left:79%;top:73%"><a href="game.html#trial" aria-label="Elemental Trial">💎</a><span>Elemental Trial</span></div><div class="map-point" style="left:81%;top:43%"><a href="finale.html" aria-label="Birthday Finale">🎁</a><span>Birthday Temple</span></div></div><section class="section center"><p class="subtle">Inspired by the feeling of fantasy exploration and adventure games — a custom birthday world just for Kotryna.</p><a class="btn" href="journey.html" data-start-story>♫ Begin the 18-Year Story →</a></section></main>
+<div id="storyOverlay" role="dialog" aria-label="18 Years of Kotryna" aria-modal="true" hidden>
+  <div class="storyToolbar"><span>🐾 18 Years of Kotryna</span><div><button id="storyMusicToggle" type="button">⏸ Pause music</button><button id="closeStory" type="button">✕ Back to map</button></div></div>
+  <iframe id="storyFrame" title="18 Years of Kotryna" loading="eager"></iframe>
+</div>
+<audio id="worldStoryAudio" src="birthday-music.mp3" loop preload="auto"></audio>
+<style>
+#storyOverlay[hidden]{display:none!important}#storyOverlay{position:fixed;inset:0;z-index:9999;background:#102a38;display:flex;flex-direction:column}
+.storyToolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#102a38;color:#f3dc9e;padding:10px 16px;font-size:14px}
+.storyToolbar>div{display:flex;gap:8px}.storyToolbar button{background:transparent;border:1px solid #a79368;color:#f3dc9e;border-radius:9px;padding:9px 12px;cursor:pointer;font:inherit}
+#storyFrame{flex:1;width:100%;border:0;background:#102a38}
+@media(max-width:600px){.storyToolbar{font-size:12px;padding:8px}.storyToolbar button{padding:7px;font-size:11px}}
+</style>
+<script>
+(function(){
+ const overlay=document.getElementById('storyOverlay');
+ const audio=document.getElementById('worldStoryAudio');
+ const frame=document.getElementById('storyFrame');
+ const musicToggle=document.getElementById('storyMusicToggle');
+ function sync(){musicToggle.textContent=audio.paused?'♫ Resume music':'⏸ Pause music'}
+ document.querySelectorAll('[data-start-story]').forEach(link=>link.addEventListener('click',event=>{
+   event.preventDefault();
+   overlay.hidden=false;
+   document.body.style.overflow='hidden';
+   // Playing within the original click event avoids cross-page autoplay restrictions.
+   audio.play().catch(()=>{musicToggle.textContent='♫ Tap to play music'});
+   frame.src='journey.html?embedded=1';
+   sync();
+ }));
+ musicToggle.addEventListener('click',()=>{if(audio.paused)audio.play().catch(()=>{});else audio.pause();sync()});
+ document.getElementById('closeStory').addEventListener('click',()=>{
+   overlay.hidden=true;frame.src='about:blank';audio.pause();document.body.style.overflow='';sync();
+ });
+ audio.addEventListener('play',sync);audio.addEventListener('pause',sync);
+})();
+</script>
+<footer class="footer">KOTRYNA · LEVEL 18 UNLOCKED ✧ A birthday world made for you 🐈</footer><script src="main.js"></script></body></html>

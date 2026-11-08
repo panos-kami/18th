@@ -1,23 +1,21 @@
 KOTRYNA — LEVEL 18 UNLOCKED
 
-OPEN index.html in your browser. This is a MULTI-PAGE site, not one page.
+All files must be on the SAME LEVEL. No subfolders.
 
-All HTML, CSS, JS, images and videos go at the SAME folder level. No subfolders.
+Open index.html in a browser. The site contains SIX pages:
+index.html, world.html, journey.html, videos.html, game.html, finale.html
+style.css and main.js are required.
 
-Photo filenames (exact): age-1.jpeg ... age-18.jpeg
-Optional gallery: memory-1.jpeg ... memory-6.jpeg
+Photos: photo-age1.jpeg through photo-age18.jpeg (no hyphen after age).
+If your files are JPG or PNG, the code also tries .jpg, .png, .webp automatically.
 
-Video filenames (exact; use MP4/H.264 recommended):
-Dad: dad.mp4
-Mom: mom.mp4
-Sister: sister.mp4
-Marija: marija.mp4
-Tėja: teja.mp4
-Grandma: grandma.mp4
-Indraja: indraja.mp4
+Birthday greetings: dad.mp4, mom.mp4, sister.mp4, marija.mp4, teja.mp4, grandma.mp4, indraja.mp4
+To add more people, edit videoPeople at the TOP of main.js and put the corresponding .mp4 file beside this README.
 
-To ADD a video, copy a <article class="card video-card reveal">...</article> block in videos.html, change the name and src to your new file's name, and place that file next to index.html.
+Music included: birthday-music.mp3 (compressed from the supplied recording). This plays when the visitor clicks the play button on the photo journey.
+The requested screen recording audio was not present among uploaded materials, so no audio file has been fabricated or converted.
 
-Images/videos are not included, since this birthday is for a different person and no new personal media has been supplied. Empty slots show friendly placeholders until you add files.
+YouTube: optionally embed a VIDEO ID using an iframe on videos.html later; currently no guessed URL or outside video is inserted.
 
-Tip: video files should be .mp4 with H.264 video + AAC audio to maximize compatibility.
+Progress saves in the browser's localStorage. All pages are mobile friendly.
+Works offline after fonts are cached; falls back to system fonts otherwise.
