@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#eef0dd">
   <meta name="description" content="A birthday adventure for Kotryna — Level 18 unlocked.">
   <title>Mochi’s Adventures · Kotryna's Adventure</title>
-  <link rel="stylesheet" href="style.css?v=16">
-  <script src="main.js?v=16" defer></script>
+  <link rel="stylesheet" href="style.css?v=17">
+  <script src="main.js?v=17" defer></script>
 </head>
 <body data-page="game.html">
   <div class="clouds" aria-hidden="true"></div>
@@ -34,39 +34,39 @@
     <main class="screen">
       <section class="screen-heading">
         <span class="chapter-kicker">TRIAL GROUNDS · ADVENTURER RANK XVIII</span>
-        <h1>The Adventurer's <em>Trials</em></h1>
-        <p>Three trials stand between you and the final reward. Complete each challenge to claim your prize.</p>
+        <h1>The Event <em>Trials</em></h1>
+        <p>A more elegant mini-game hub with three interactive trials, inspired by fantasy event menus rather than a child-like arcade page.</p>
       </section>
-      <div class="companion speech-panel"><span class="companion-cat">🐈</span><div><small>TRAVEL COMPANION</small><strong>Mochi · Your Guardian</strong><p>Your companion will be here as you complete each trial.</p></div></div>
+      <div class="companion speech-panel"><span class="companion-cat">🐈</span><div><small>TRAVEL COMPANION</small><strong>Mochi · Event Guide</strong><p>Three trials, three badges, one final reward. Complete them in any order.</p></div></div>
       <section class="quest-board">
         <div class="quest-summary"><span>QUEST LOG</span><strong id="questsProgress">0 / 3</strong></div>
         <div class="progress-rail"><div class="progress-fill" id="questsFill"></div></div>
         <div class="quest-tabs" role="tablist" aria-label="Choose quest">
-          <button type="button" class="quest-tab active" data-trial="stars" role="tab" aria-selected="true">✦ Starfall Challenge</button>
+          <button type="button" class="quest-tab active" data-trial="stars" role="tab" aria-selected="true">✦ Jade Sigil Hunt</button>
           <button type="button" class="quest-tab" data-trial="cat" role="tab" aria-selected="false">🐾 Guardian's Offering</button>
-          <button type="button" class="quest-tab" data-trial="runes" role="tab" aria-selected="false">🌼 Ancient Runes</button>
+          <button type="button" class="quest-tab" data-trial="runes" role="tab" aria-selected="false">◆ Constellation Runes</button>
         </div>
         <section class="trial-panel" id="trialStars">
-          <div class="trial-title"><div class="quest-number">01</div><div><small>FIELD QUEST</small><h2>Starfall Challenge</h2></div></div>
-          <p>Catch 10 falling stars before 20 seconds are up. Tap the glowing stars as they appear in the meadow!</p>
+          <div class="trial-title"><div class="quest-number">01</div><div><small>FIELD QUEST</small><h2>Jade Sigil Hunt</h2></div></div>
+          <p>Catch 10 jade sigils before the timer ends. Tap the glowing marks as they appear inside the field domain.</p>
           <div class="battle-hud"><span>✦ <b id="catchCount">0</b> / 10</span><span>⏳ <b id="catchTimer">20</b>s</span></div>
           <div class="star-arena" id="starArena"><div class="arena-hint" id="arenaHint">Tap START to summon the stars</div></div>
-          <button class="game-button primary wide" id="startStars" type="button">✦ START STAR HUNT</button>
+          <button class="game-button primary wide" id="startStars" type="button">✦ START SIGIL HUNT</button>
         </section>
         <section class="trial-panel hidden" id="trialCat">
           <div class="trial-title"><div class="quest-number">02</div><div><small>COMPANION QUEST</small><h2>Guardian's Offering</h2></div></div>
-          <p>Gain the guardian’s trust. Choose the correct offering three times.</p>
+          <p>Win Mochi's trust. Offer the correct item three times and earn the companion badge.</p>
           <div id="catMood" class="cat-portrait">🐈</div>
           <div class="cat-dialogue" id="catDialogue">Mrrp! Something fishy smells delicious… 🐟</div>
           <div class="battle-hud"><span>HAPPY TREATS <b id="treatCount">0</b> / 3</span></div>
           <div class="treat-grid"><button type="button" data-treat="fish">🐟<small>Fish</small></button><button type="button" data-treat="yarn">🧶<small>Yarn</small></button><button type="button" data-treat="leaf">🍃<small>Leaf</small></button></div>
         </section>
         <section class="trial-panel hidden" id="trialRunes">
-          <div class="trial-title"><div class="quest-number">03</div><div><small>PUZZLE QUEST</small><h2>Ancient Runes</h2></div></div>
-          <p>Turn over the magical tiles and find all four matching pairs!</p>
+          <div class="trial-title"><div class="quest-number">03</div><div><small>PUZZLE QUEST</small><h2>Constellation Runes</h2></div></div>
+          <p>Reveal the hidden symbols and match all four pairs inside the constellation board.</p>
           <div class="battle-hud"><span>PAIRS <b id="pairCount">0</b> / 4</span><span>FLIPS <b id="moveCount">0</b></span></div>
           <div id="runeGrid" class="rune-grid"></div>
-          <button class="game-button secondary wide" id="restartRunes" type="button">↻ SHUFFLE TILES</button>
+          <button class="game-button secondary wide" id="restartRunes" type="button">↻ RESHUFFLE RUNES</button>
         </section>
         <div class="rewards-panel"><div class="section-title">✧ YOUR QUEST BADGES ✧</div><div class="rewards" id="rewards"></div><a href="finale.html" id="claimReward" class="game-button primary wide locked">🔒 COMPLETE ALL THREE QUESTS</a></div>
       </section>

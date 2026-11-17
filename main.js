@@ -1,17 +1,56 @@
 "use strict";
 
-const STORE_KEY = "kotryna-birthday-sunlit-v11";
+const STORE_KEY = "kotryna-adventure-xviii-v17";
 const MUSIC_FLAG = "kotryna-start-song";
 const VIDEO_PEOPLE = [
-  { name: "Dad", file: "dad.mp4", icon: "👨" },
-  { name: "Mom", file: "mom.mp4", icon: "💗" },
-  { name: "Sister", file: "sister.mp4", icon: "🌸" },
-  { name: "Marija", file: "marija.mp4", icon: "✨" },
-  { name: "Tėja", file: "teja.mp4", icon: "🌙" },
-  { name: "Grandma", file: "grandma.mp4", icon: "🌼" },
-  { name: "Indraja", file: "indraja.mp4", icon: "💫" }
+  { name: "Mom", file: "mom.mp4", icon: "✧" },
+  { name: "Sister", file: "sister.mp4", icon: "✧" },
+  { name: "Dad", file: "dad.mp4", icon: "✧" },
+  { name: "Grandma", file: "grandma.mp4", icon: "✧" },
+  { name: "Uncle", file: "uncle.mp4", icon: "✧" },
+  { name: "Aunt", file: "aunt.mp4", icon: "✧" },
+  { name: "Indraja", file: "indraja.mp4", icon: "✧" },
+  { name: "Marija", file: "marija.mp4", icon: "✧" },
+  { name: "Tėja", file: "teja.mp4", icon: "✧" }
 ];
 // To add another video, add another object above with a filename in the same folder.
+
+
+// Original interface tones, synthesized locally; no external sound files.
+let soundContext = null;
+let soundsEnabled = true;
+function uiSound(kind = "click") {
+  if (!soundsEnabled) return;
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    soundContext = soundContext || new AudioCtx();
+    if (soundContext.state === "suspended") soundContext.resume();
+    const now = soundContext.currentTime;
+    const notes = kind === "reward" ? [523.25, 659.25, 783.99] : [660];
+    notes.forEach((frequency, index) => {
+      const oscillator = soundContext.createOscillator();
+      const volume = soundContext.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = frequency;
+      volume.gain.setValueAtTime(0.0001, now + index * 0.085);
+      volume.gain.exponentialRampToValueAtTime(0.025, now + index * 0.085 + 0.012);
+      volume.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.085 + 0.16);
+      oscillator.connect(volume).connect(soundContext.destination);
+      oscillator.start(now + index * 0.085);
+      oscillator.stop(now + index * 0.085 + 0.17);
+    });
+  } catch (error) {
+    // Sound effects are optional; the rest of the game remains usable.
+  }
+}
+
+function initInterfaceSounds() {
+  document.addEventListener("click", event => {
+    const control = event.target.closest("button, .map-pin, .region-card, .nav-item");
+    if (control && !control.matches("#musicToggle")) uiSound("click");
+  });
+}
 
 function loadProgress() {
   try {
@@ -35,7 +74,8 @@ function unlock(key) {
   if (!progress[key]) {
     progress[key] = true;
     saveProgress();
-    notify("✦ Achievement unlocked! +100 stars");
+    notify("✦ Achievement unlocked!");
+    uiSound("reward");
   }
   updateProgress();
 }
@@ -65,8 +105,8 @@ function updateProgress() {
   if (rewards) {
     rewards.innerHTML = keys.map((key, index) => `
       <div class="reward ${progress[key] ? "earned" : ""}">
-        <div>${["✦", "🐾", "☽"][index]}</div>
-        <small>${["Starfall", "Cat Café", "Rune Match"][index]}</small>
+        <div>${["✦", "🐾", "◆"][index]}</div>
+        <small>${["Jade Sigils", "Guardian", "Runes"][index]}</small>
       </div>
     `).join("");
   }
@@ -125,33 +165,59 @@ function initMusic() {
   const toggle = document.querySelector("#musicToggle");
   if (!audio || !toggle) return;
 
+  audio.loop = true;
+  audio.volume = 0.65;
+  let pending = true;
   const updateButton = () => {
     toggle.textContent = audio.paused ? "▶" : "Ⅱ";
     toggle.setAttribute("aria-label", audio.paused ? "Play music" : "Pause music");
   };
 
-  const playSong = () => {
-    audio.play().then(updateButton).catch(() => {
-      notify("Tap ▶ to start the birthday song ♪");
-    });
-  };
+  function tryPlay() {
+    if (!pending) return;
+    const result = audio.play();
+    if (result && typeof result.then === "function") {
+      result.then(() => {
+        pending = false;
+        updateButton();
+        removeFallback();
+      }).catch(() => {
+        updateButton();
+        const hint = document.querySelector("#musicHint");
+        if (hint) hint.textContent = "Tap anywhere to enable the soundtrack ♪";
+      });
+    }
+  }
+
+  function onFirstInteraction() {
+    tryPlay();
+  }
+
+  function removeFallback() {
+    document.removeEventListener("pointerdown", onFirstInteraction);
+    document.removeEventListener("keydown", onFirstInteraction);
+  }
+
+  document.addEventListener("pointerdown", onFirstInteraction);
+  document.addEventListener("keydown", onFirstInteraction);
 
   toggle.addEventListener("click", () => {
     if (audio.paused) {
-      playSong();
+      pending = true;
+      tryPlay();
     } else {
+      pending = false;
       audio.pause();
+      removeFallback();
       updateButton();
     }
   });
 
   audio.addEventListener("play", updateButton);
   audio.addEventListener("pause", updateButton);
-
-  if (sessionStorage.getItem(MUSIC_FLAG) === "yes") {
-    sessionStorage.removeItem(MUSIC_FLAG);
-    playSong();
-  }
+  // Browser autoplay policies may reject sound before any user interaction.
+  // An attempted autoplay followed by one-tap fallback is the most reliable option.
+  tryPlay();
 }
 
 function initStoryLink() {
@@ -171,31 +237,33 @@ function initVideos() {
     article.className = "video-card";
     article.innerHTML = `
       <div class="video-top">
-        <span class="video-avatar">${person.icon}</span>
+        <span class="video-avatar" aria-hidden="true">✦</span>
         <div>
-          <small>MESSAGE ${String(index + 1).padStart(2, "0")}</small>
+          <small>VOICE ARCHIVE · ${String(index + 1).padStart(2, "0")}</small>
           <strong>${person.name}</strong>
-          <span class="video-status">A message waiting for you</span>
+          <span class="video-status">Birthday message for Kotryna</span>
         </div>
       </div>
-      <button class="game-button secondary video-trigger" type="button">✉ OPEN MESSAGE</button>
-      <div class="video-holder"></div>
+      <div class="video-holder">
+        <video controls playsinline preload="none" aria-label="Birthday message from ${person.name}">
+          <source src="${person.file}" type="video/mp4">
+          Your browser does not support video playback.
+        </video>
+      </div>
+      <small class="video-file-note">${person.file}</small>
     `;
 
-    const button = article.querySelector(".video-trigger");
-    button.addEventListener("click", () => {
-      if (article.querySelector("video")) return;
-      const video = document.createElement("video");
-      video.controls = true;
-      video.playsInline = true;
-      video.preload = "metadata";
-      video.src = person.file;
-      video.addEventListener("error", () => {
-        article.querySelector(".video-status").textContent = `Waiting for ${person.file}`;
+    const video = article.querySelector("video");
+    video.addEventListener("play", () => {
+      document.querySelectorAll("#videoList video").forEach(other => {
+        if (other !== video) other.pause();
       });
-      article.querySelector(".video-holder").append(video);
-      button.remove();
-      video.play().catch(() => {});
+      const soundtrack = document.querySelector("#birthdayAudio");
+      if (soundtrack) soundtrack.pause();
+    });
+    video.addEventListener("error", () => {
+      article.querySelector(".video-status").textContent =
+        `Place ${person.file} in the same folder as the HTML files`;
     });
     list.append(article);
   });
@@ -225,7 +293,7 @@ function initStarfall() {
       score++;
       document.querySelector("#catchCount").textContent = score;
       if (score >= 10) {
-        stop("✦ Starfall complete! You caught all ten stars.");
+        stop("✦ Jade Sigil Hunt complete! You caught all ten sigils.");
         unlock("stars");
       } else {
         showStar();
@@ -241,7 +309,7 @@ function initStarfall() {
     starSpawn = null;
     arena.innerHTML = `<div class="arena-hint">${message}</div>`;
     start.disabled = false;
-    start.textContent = "REPLAY STARFALL ↻";
+    start.textContent = "REPLAY SIGIL HUNT ↻";
   }
 
   start.addEventListener("click", () => {
@@ -259,7 +327,7 @@ function initStarfall() {
     starTimer = setInterval(() => {
       time--;
       document.querySelector("#catchTimer").textContent = time;
-      if (time <= 0) stop("Time is up! Try once more, traveler.");
+      if (time <= 0) stop("Time is up! Try once more.");
     }, 1000);
   });
 }
@@ -272,13 +340,13 @@ function initCatCafe() {
   document.querySelectorAll("[data-treat]").forEach(button => {
     button.addEventListener("click", () => {
       if (button.dataset.treat !== "fish") {
-        dialogue.textContent = "Mew! That's fun, but I'm craving fish! 🐟";
+        dialogue.textContent = "Mew… not that one. The guardian is waiting for fish. 🐟";
         return;
       }
       fish = Math.min(3, fish + 1);
       countLabel.textContent = fish;
       dialogue.textContent = fish >= 3
-        ? "PURRR! You've won the Cat Guardian's friendship! 💛"
+        ? "PURRR! The guardian badge is yours. 💛"
         : `Purr… ${3 - fish} more fish, please! 🐟`;
       if (fish >= 3) unlock("cat");
     });
@@ -386,6 +454,7 @@ function initNavigation() {
 
 function init() {
   initNavigation();
+  initInterfaceSounds();
   updateProgress();
   initStoryLink();
   initPhotos();
