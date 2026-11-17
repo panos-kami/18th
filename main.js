@@ -9,7 +9,7 @@ const VIDEO_PEOPLE = [
   { name: "Grandma", file: "grandma.mp4", icon: "✧" },
   { name: "Uncle", file: "uncle.mp4", icon: "✧" },
   { name: "Aunt", file: "aunt.mp4", icon: "✧" },
-  { name: "Indraja", file: "indraja.mp4", icon: "✧" },
+  { name: "Indraja and Augustas", file: "indraja.mp4", icon: "✧" },
   { name: "Marija", file: "marija.mp4", icon: "✧" },
   { name: "Tėja", file: "teja.mp4", icon: "✧" }
 ];
