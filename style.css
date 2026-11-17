@@ -263,3 +263,216 @@ p { line-height: 1.65; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
 }
+
+
+/* === VERSION XVI: bright cinematic fantasy RPG, designed for an 18-year-old === */
+:root {
+  --ink: #2e3833;
+  --muted: #69756c;
+  --cream: #f9f7ed;
+  --paper: #faf6e9;
+  --line: #c6b48e;
+  --brown: #79613d;
+  --green: #416d57;
+  --green-dark: #284e3f;
+  --gold: #b38b4b;
+  --pink: #a98989;
+  --shadow: 0 15px 38px #34453625, 0 3px 1px #b8a27733;
+}
+html { scroll-padding-top: 105px; }
+body {
+  color: #293b32;
+  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  background:
+    radial-gradient(ellipse 900px 380px at 20% 0%, #fff9e6a8, transparent 75%),
+    radial-gradient(ellipse 700px 320px at 95% 7%, #c3e5d0b8, transparent 80%),
+    linear-gradient(180deg, #eaf1db 0, #b5d6bf 320px, #e7e8d5 820px, #ede9dc 100%);
+}
+.clouds { opacity: 0.65; }
+.game-shell {
+  max-width: 1050px;
+  background: #ffffff18;
+}
+.topbar {
+  position: relative;
+  background: #fbfaf3f5;
+  border-bottom: 1px solid #d1c5a8;
+  box-shadow: 0 4px 20px #253b3021;
+  min-height: 62px;
+}
+.brand {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: clamp(13px, 3.8vw, 19px);
+}
+.brand b { color: #8c7045; }
+.brand-star { color: #a48952; }
+.level-pill {
+  color: #685338;
+  background: #f4edda;
+  border: 1px solid #cfbd95;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+.menu-toggle { display: none !important; }
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  padding: 8px 12px;
+  gap: 6px;
+  background: #f5f1e8ef;
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #c7b893;
+  box-shadow: 0 5px 18px #293f3324;
+}
+.nav-item {
+  padding: 10px 13px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 12px;
+  color: #526557;
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+.nav-item.current {
+  background: #39634f;
+  color: #fffdf5;
+  border: 1px solid #426852;
+  box-shadow: none;
+}
+.adventure-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 14px 14px 0;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, #315845eb, #4f735de5);
+  border: 1px solid #c7b17f;
+  color: #fff8dd;
+  box-shadow: 0 4px 18px #3153402b;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .085em;
+}
+.adventure-hud b { color: #f4d18e; font-size: 15px; }
+.screen { padding: 24px 16px 50px; }
+.screen-heading { margin: 12px auto 28px; }
+.chapter-kicker {
+  color: #77644c;
+  font-size: 10px;
+  letter-spacing: .18em;
+}
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; }
+h1 { color: #294d3d; font-weight: 500; font-size: clamp(36px, 8vw, 65px); }
+h1 em, h2 em { color: #97784c; }
+.screen-heading p { font-size: 15px; color: #475e53; }
+.game-button {
+  border-radius: 5px;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 0 #a79168;
+}
+.game-button.primary {
+  background: linear-gradient(#4f7b61, #315d49);
+  border-color: #bca677;
+  box-shadow: 0 4px 0 #244c3a;
+}
+.game-button.secondary {
+  background: linear-gradient(#faf5e7,#e9dfc5);
+  border-color: #b9a174;
+  box-shadow: 0 4px 0 #a99574;
+}
+.hero, .landscape {
+  border-radius: 4px;
+  outline: 2px solid #f9f4de;
+  border: 4px solid #c8b78e;
+  box-shadow: 0 18px 40px #244b382c;
+}
+.hero {
+  background:
+    radial-gradient(circle at 78% 12%, #fff9d1 0 46px, transparent 49px),
+    linear-gradient(165deg, transparent 48%, #5c9375 49%, #7ba885 63%, transparent 64%),
+    linear-gradient(12deg, transparent 49%, #a7cba5 50%, #7fb596 73%, transparent 74%),
+    linear-gradient(180deg, #b7e1e6 0, #e9f0df 53%, #9cc7a1 54%, #699b7a 100%);
+}
+.landscape {
+  background:
+    radial-gradient(circle at 77% 15%, #fff1bb 0 34px, transparent 38px),
+    linear-gradient(165deg, transparent 49%, #98b5a2 50% 59%, transparent 60%),
+    linear-gradient(18deg, transparent 50%, #96bda1 51% 66%, transparent 67%),
+    linear-gradient(180deg, #c1e2e8 0, #eef2df 48%, #9cc79e 49%, #72a37f 100%);
+}
+.companion { animation: none !important; transform: none !important; }
+.companion-cat { animation: none !important; transform: none !important; }
+.companion.speech-panel {
+  position: relative;
+  border-radius: 4px;
+  background: linear-gradient(125deg,#fdfbf2,#f0ead8);
+  border: 1px solid #c4b087;
+  box-shadow: 0 8px 25px #3b5a4425;
+}
+.region-card, .photo-card, .video-card, .trial-panel, .quest-board, .music-panel, .rewards-panel {
+  border-radius: 5px !important;
+  border-color: #c5b18b !important;
+  background: linear-gradient(145deg, #fffdf6, #f4f0e4) !important;
+  box-shadow: 0 10px 28px #4255441a !important;
+}
+.region-card { transition: background .15s ease, transform .15s ease; }
+.region-card:active { transform: translateY(2px); }
+.photo-timeline, .video-list { max-width: 710px; margin-inline: auto; }
+.photo-card { width: 100%; margin-bottom: 24px; }
+.photo-frame { background: #ece4d1; }
+.photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: none;
+  height: auto;
+  object-fit: contain;
+}
+.video-card { width: 100%; margin-bottom: 24px; overflow: hidden; }
+.video-avatar { border-radius: 50%; background: #e7dfc7; color: #a88e56; }
+.video-holder { display: block; width: 100%; }
+.video-holder video {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #1b2521;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.video-file-note {
+  display: block;
+  margin: 10px 0 0;
+  color: #778077;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-align: right;
+}
+.quest-tab, .rune-tile, .treat-grid button { border-radius: 5px !important; }
+.star-arena { border-radius: 4px; overflow: hidden; }
+.falling-star { touch-action: manipulation; }
+.site-footer { color: #5f6b5c; letter-spacing: .1em; }
+@media (min-width: 770px) {
+  .screen { padding-inline: 40px; }
+  .top-nav { justify-content: center; }
+}
+@media (max-width: 520px) {
+  .topbar { padding: 12px 14px; }
+  .adventure-hud { margin: 10px 10px 0; padding: 9px; font-size: 9px; }
+  .hud-realm { display: none; }
+  .screen { padding: 22px 12px 42px; }
+  .region-card { min-height: 88px; }
+  .video-holder video { max-height: 54vh; }
+  .game-button { min-height: 48px; }
+  .quest-tabs { display: grid; grid-template-columns: 1fr; }
+  .quest-tab { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
